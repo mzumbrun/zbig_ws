@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<robot name="zbig" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Load Simulated or Real Hardware Interfaces -->
+   <xacro:arg name="is_sim" default="true"/>
+   <xacro:arg name="use_ros2_control" default="true"/>
+
+  <!-- Include physical aspects of the robot, includes LIDAR and IMU -->
+  <xacro:include filename="$(find zbig_description)/urdf/bigbot_physical.urdf.xacro" />
+
+
+  <!-- Include ros2 control Parameters for both SIM and REAL robots-->
+  <xacro:include filename="$(find zbig_description)/urdf/bigbot_ros2_control.xacro" />
+
+ 
+  <!-- Include gazebo Plugins for SIM only -->
+  <xacro:if value="$(arg use_ros2_control)">
+      <xacro:include filename="$(find zbig_description)/urdf/bigbot_gazebo_control.xacro" />
+  </xacro:if>
+
+
+</robot>

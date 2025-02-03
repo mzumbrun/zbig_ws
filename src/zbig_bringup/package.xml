@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>zbig_bringup</name>
+  <version>0.0.0</version>
+  <description>zbig Bringup package</description>
+  <maintainer email="m.l.zumbrunnen@gmail.com">MikeZ</maintainer>
+  <license>Apache 2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>rplidar_ros</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>zbig_firmware</exec_depend>
+  <exec_depend>zbig_controller</exec_depend>
+  <exec_depend>zbig_description</exec_depend>
+  <exec_depend>zbig_localization</exec_depend>
+  <exec_depend>zbig_mapping</exec_depend>
+  <exec_depend>zbig_moveit</exec_depend>
+  <exec_depend>zbig_remote</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

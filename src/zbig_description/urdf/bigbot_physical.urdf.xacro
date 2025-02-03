@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<robot name="zbig" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+
+  <material name="silver">
+    <color rgba="0.79 0.82 0.93 1"/>
+  </material>
+
+  <material name="dark_grey">
+    <color rgba="0.3 0.3 0.3 1"/>
+  </material>
+
+  <link name="base_footprint"/>
+  
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.070489 -0.000718 0.040699" rpy="0.0 0.0 0.0" />
+      <mass value="10.0"/>
+      <inertia ixx="0.011114" ixy="0.000188" ixz="-0.005821"
+               iyy="0.017229" iyz="0.000127"
+               izz="0.019734" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find zbig_description)/meshes/smallbot_base_link.stl" />
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find zbig_description)/meshes/smallbot_base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+    <origin xyz="0 0 0.063" rpy="0 0 0"/>
+  </joint>
+
+  <link name="wheel_right_link">
+    <inertial>
+      <origin xyz="0 -0.014 0" rpy="0 0 0" />
+      <mass value="0.0530086090966721" />
+      <inertia ixx="1.88176298336665E-05" ixy="-4.8444933029987E-10" ixz="1.88163708851143E-08"
+               iyy="3.11510738647764E-05" iyz="-6.93560663069607E-11"
+               izz="1.8801969558182E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.0 0.014 0.0" rpy="1.57 0 0" />
+      <geometry>
+        <mesh filename="file://$(find zbig_description)/meshes/smallbot_wheel.stl" />
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.015 0" rpy="1.57 0 0" />
+      <geometry>
+        <sphere radius="0.063"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel_right_joint" type="continuous">
+    <origin xyz="0 -0.2225 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel_right_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+  
+  <link
+    name="wheel_left_link">
+    <inertial>
+      <origin xyz="0 -0.014 0" rpy="0 0 0" />
+      <mass value="0.0530086043217644" />
+      <inertia ixx="1.8792911368909E-05"  ixy="3.31256392204584E-10" ixz="-1.14082001662767E-08"
+               iyy="3.11510738759073E-05" iyz="-3.60499245082192E-10"
+               izz="1.88266886146847E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 -0.014 0" rpy="-1.57 0 0" />
+      <geometry>
+        <mesh filename="file://$(find zbig_description)/meshes/smallbot_wheel.stl" />
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.014 0" rpy="-1.57 0 0" />
+      <geometry>
+        <sphere radius="0.063"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel_left_joint" type="continuous">
+    <origin xyz="0 0.2225 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel_left_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="caster_right_link">
+    <inertial>
+      <origin xyz=".000112 -0.0155 -.00818" rpy="0 0 0" />
+      <mass value="0.027976" />
+      <inertia ixx="0.000019" ixy="0" ixz="0"
+               iyy="0.000007"  iyz="0.000006"
+               izz="0.000014" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find zbig_description)/meshes/smallbot_caster_link.stl" />
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.051"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="caster_right_joint" type="fixed">
+    <origin xyz="-0.137 -0.095 -.025" rpy="1.57 0 1.57" />
+    <parent link="base_link" />
+    <child link="caster_right_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+  
+  <link name="caster_left_link">
+    <inertial>
+      <origin xyz=".000112 -0.0155 -.00818" rpy="0 0 0" />
+      <mass value="0.027976" />
+      <inertia ixx="0.000019" ixy="0" ixz="0"
+               iyy="0.000007"  iyz="0.000006"
+               izz="0.000014" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find zbig_description)/meshes/smallbot_caster_link.stl" />
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.051"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="caster_left_joint" type="fixed">
+    <origin xyz="-0.137 0.095 -.025" rpy="1.57 0 1.57" />
+    <parent link="base_link" />
+    <child link="caster_left_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="imu_link">
+    <inertial>
+      <origin xyz="-0.00552433659106688 0.000168210391520346 0.000514000497342681" rpy="0 0 0" />
+      <mass value="0.000528415362211671" />
+      <inertia ixx="1.46176048428261E-08" ixy="1.40015117949421E-10" ixz="-1.99633872937403E-12"
+               iyy="8.59662482954888E-09" iyz="7.52375112767959E-12"
+               izz="2.30279421279312E-08" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14" />
+      <geometry>
+        <mesh filename="file://$(find zbig_description)/meshes/imu_link.STL" />
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 1.57" />
+      <geometry>
+        <mesh filename="file://$(find zbig_description)/meshes/imu_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="imu_joint" type="fixed">
+    <origin xyz="-0.04016 0.049755 0.064953" rpy="3.14 0 -1.57" />
+    <parent link="base_link" />
+    <child link="imu_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="laser_frame">
+    <inertial>
+      <origin xyz="0.005399 -0.010876 0.002517" rpy="0 0 0" />
+      <mass value="0.07308" />
+      <inertia ixx="0.000039" ixy="-0.000011" ixz="0.000003"
+               iyy="0.000063" iyz="-0.000005"
+               izz="0.000057" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.57 0 3.14" />
+      <geometry>
+        <mesh filename="file://$(find zbig_description)/meshes/lidarA1M8.stl" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find zbig_description)/meshes/lidarA1M8.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="laser_joint" type="fixed">
+    <origin xyz="-0.013456 0.000513 0.140452" rpy="0 0 3.14" />
+    <parent link="base_link" />
+    <child link="laser_frame" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+
+
+</robot>

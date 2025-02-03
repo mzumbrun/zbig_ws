@@ -1,0 +1,10 @@
+<library path="zbig_firmware">
+    <class name="zbig_firmware/zbigInterface"
+      type="zbig_firmware::zbigInterface"
+      base_class_type="hardware_interface::SystemInterface"
+    >
+      <description>
+        zbig Hardware Interface
+      </description>
+    </class>
+  </library>
