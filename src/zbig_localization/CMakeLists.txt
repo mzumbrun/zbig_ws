@@ -20,10 +20,10 @@ include_directories(include)
 
 ament_python_install_package(${PROJECT_NAME})
 
-install(
-  DIRECTORY include
-  DESTINATION include
-)
+# install(
+#   DIRECTORY include
+#   DESTINATION include
+# )
 
 install(TARGETS
   LIBRARY DESTINATION lib
