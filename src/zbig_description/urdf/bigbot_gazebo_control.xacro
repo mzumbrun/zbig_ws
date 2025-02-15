@@ -106,7 +106,7 @@
 
    <!-- 2D Laser Sensor -->
    <gazebo reference="laser_frame">
-    <sensor name="lidar" type="gpu_lidar">
+    <sensor name="gpu_lidar" type="gpu_lidar">
       <always_on>true</always_on>
       <visualize>true</visualize>
       <topic>scan</topic>
@@ -117,8 +117,8 @@
           <horizontal>
             <samples>360</samples>
             <resolution>1.00000</resolution>
-            <min_angle>0.000000</min_angle>
-            <max_angle>6.280000</max_angle>
+            <min_angle>-3.1416</min_angle>
+            <max_angle>3.1416</max_angle>
           </horizontal>
         </scan>
         <range>
@@ -209,5 +209,17 @@
     <maxVel>1.0</maxVel>
   </gazebo>
   -->
-
+  <gazebo reference="base_link"> 
+    <sensor name="navsat" type="navsat">
+      
+      <always_on>1</always_on>
+      <!--  -->
+      <update_rate>1</update_rate>
+      <!---->
+      <topic>navsat</topic>
+      <!---->
+      <gz_frame_id>base_link</gz_frame_id>
+    </sensor>
+  </gazebo>
+  
 </robot>

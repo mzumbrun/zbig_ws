@@ -28,6 +28,13 @@ class TwistRelayNode(Node):
             "/input_joy/cmd_vel",
             10
         )
+        
+        self.nav_sub = self.create_subscription(
+            Twist,
+            "/cmd_vel",
+            self.controller_twist_callback,
+            10
+        )
 
     def controller_twist_callback(self, msg):
         twist_stamped = TwistStamped()

@@ -21,6 +21,10 @@ def generate_launch_description():
         "use_map",
         default_value="floor2"
     )
+    
+    world_name = LaunchConfiguration("world_name")
+    
+    world_name_arg = DeclareLaunchArgument(name="world_name", default_value="empty")
 
     gazebo = IncludeLaunchDescription(
         os.path.join(
@@ -28,6 +32,10 @@ def generate_launch_description():
             "launch",
             "bigbot_gazebo.launch.py"
         ),
+        launch_arguments={
+            "world_name": world_name,
+        }.items(),
+
     )
     
     controller = IncludeLaunchDescription(
@@ -130,6 +138,7 @@ def generate_launch_description():
     return LaunchDescription([
         use_slam_arg,
         use_map_arg,
+        world_name_arg,
         gazebo,
         controller,
         joystick,
