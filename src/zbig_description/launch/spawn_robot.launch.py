@@ -17,7 +17,7 @@ def generate_launch_description():
     os.environ["GZ_SIM_RESOURCE_PATH"] += os.pathsep + gazebo_models_path
 
     world_arg = DeclareLaunchArgument(
-        'world', default_value='home.sdf',
+        'world', default_value='empty.world',
         description='Name of the Gazebo world file to load'
     )
 

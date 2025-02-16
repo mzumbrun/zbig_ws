@@ -10,7 +10,7 @@ def generate_launch_description():
 
     # Declare the world file argument
     world_arg = DeclareLaunchArgument(
-        'world', default_value='home.world',
+        'world', default_value='empty.world',
         description='Name of the Gazebo world file to load'
     )
 
