@@ -38,11 +38,9 @@ def generate_launch_description():
         }.items()
     )
 
-    # Create launch description
-    launchDescriptionObject = LaunchDescription()
+    
+    return LaunchDescription([
+        world_arg,
+        gazebo_launch,
 
-    # Add actions
-    launchDescriptionObject.add_action(world_arg)
-    launchDescriptionObject.add_action(gazebo_launch)
-
-    return launchDescriptionObject
+    ])

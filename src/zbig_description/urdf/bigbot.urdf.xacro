@@ -8,7 +8,7 @@
 
   <!-- Include physical aspects of the robot, includes LIDAR and IMU -->
   <xacro:include filename="$(find zbig_description)/urdf/bigbot_physical.urdf.xacro" />
-
+  <xacro:include filename="$(find zbig_description)/urdf/materials.xacro" />
 
   <!-- Include ros2 control Parameters for both SIM and REAL robots-->
   <xacro:include filename="$(find zbig_description)/urdf/bigbot_ros2_control.xacro" />

@@ -36,12 +36,12 @@ def generate_launch_description():
     
     use_simple_controller_arg = DeclareLaunchArgument(
         "use_simple_controller",
-        default_value="True",
+        default_value="False",
     )
 
     wheel_radius_arg = DeclareLaunchArgument(
         "wheel_radius",
-        default_value="0.063",
+        default_value="0.074",
     )
     wheel_separation_arg = DeclareLaunchArgument(
         "wheel_separation",

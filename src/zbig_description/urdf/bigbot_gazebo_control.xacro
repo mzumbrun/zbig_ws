@@ -209,17 +209,5 @@
     <maxVel>1.0</maxVel>
   </gazebo>
   -->
-  <gazebo reference="base_link"> 
-    <sensor name="navsat" type="navsat">
-      
-      <always_on>1</always_on>
-      <!--  -->
-      <update_rate>1</update_rate>
-      <!---->
-      <topic>navsat</topic>
-      <!---->
-      <gz_frame_id>base_link</gz_frame_id>
-    </sensor>
-  </gazebo>
   
 </robot>
