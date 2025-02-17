@@ -244,7 +244,7 @@ def generate_launch_description():
         joystick,
         safety_stop,
         slam,
-        #rviz_slam,
+        rviz_slam,
         nav_given_map,
         nav_with_slam,
 
