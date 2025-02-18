@@ -16,7 +16,7 @@
 
     <xacro:property name="lidar_roll" value="0.0"/>
     <xacro:property name="lidar_pitch" value="0.0"/>
-    <xacro:property name="lidar_yaw" value="0.0"/>
+    <xacro:property name="lidar_yaw" value="3.14"/>
 
     <xacro:property name="chassis_mass" value="10.0"/>
     <xacro:property name="wheel_mass" value="0.05"/>
