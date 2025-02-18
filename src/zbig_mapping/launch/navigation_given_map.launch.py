@@ -35,13 +35,13 @@ def generate_launch_description():
 
     # Path to the Slam Toolbox launch file
     nav2_localization_launch_path = os.path.join(
-        get_package_share_directory('nav2_bringup'),
+        pkg_localization,
         'launch',
         'localization_launch.py'
     )
 
     nav2_navigation_launch_path = os.path.join(
-        get_package_share_directory('nav2_bringup'),
+        pkg_mapping,
         'launch',
         'navigation_launch.py'
     )
@@ -49,7 +49,7 @@ def generate_launch_description():
     localization_params_path = os.path.join(
         pkg_localization,
         'config',
-        'amcl_localization.yaml'
+        'amcl.yaml'
     )
 
     navigation_params_path = os.path.join(
