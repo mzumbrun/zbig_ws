@@ -16,8 +16,8 @@ class NoisyController(Node):
 
     def __init__(self):
         super().__init__("noisy_controller")
-        self.declare_parameter("wheel_radius", 0.033)
-        self.declare_parameter("wheel_separation", 0.282)
+        self.declare_parameter("wheel_radius", 0.074)
+        self.declare_parameter("wheel_separation", 0.44)
 
         self.wheel_radius_ = self.get_parameter("wheel_radius").get_parameter_value().double_value
         self.wheel_separation_ = self.get_parameter("wheel_separation").get_parameter_value().double_value
