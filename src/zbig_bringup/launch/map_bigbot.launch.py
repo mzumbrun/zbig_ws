@@ -108,6 +108,6 @@ def generate_launch_description():
      #   controller,
      #   joystick,
      #   safety_stop,
-        localization,
-        slam
+       # localization,
+     #   slam
     ])
