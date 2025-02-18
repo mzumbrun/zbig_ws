@@ -47,7 +47,7 @@ def generate_launch_description():
         ),
         launch_arguments={
             "use_simple_controller": "False",
-            "use_python": "True"
+            "use_sim_time": "False"
         }.items(),
     )
     
@@ -98,7 +98,7 @@ def generate_launch_description():
         controller,
      #   joystick,
         imu_driver_node,
-        safety_stop,
+     #   safety_stop,
      #   localization,
      #   slam
     ])
