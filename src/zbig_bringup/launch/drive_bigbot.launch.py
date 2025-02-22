@@ -46,7 +46,7 @@ def generate_launch_description():
             "controller_bigbot.launch.py"
         ),
         launch_arguments={
-            "use_simple_controller": "False",
+            "use_simple_controller": "True",
             "use_sim_time": "False"
         }.items(),
     )
