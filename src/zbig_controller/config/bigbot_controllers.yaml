@@ -50,8 +50,8 @@ zbig_controller:
     linear:
       x:
         has_velocity_limits    : true
-        max_velocity           : 3.0  # m/s was 0.7
-        min_velocity           : -3.0 # m/s was -0.7
+        max_velocity           : 0.3  # m/s was 0.7
+        min_velocity           : -0.3 # m/s was -0.7
         has_acceleration_limits: true
         max_acceleration       : 0.25  # m/s^2
         min_acceleration       : -0.25 # m/s^2
@@ -60,8 +60,8 @@ zbig_controller:
     angular:
       z:
         has_velocity_limits    : true
-        max_velocity           : 5.  # rad/s was 8.5
-        min_velocity           : -5.  # rad/s was -8.5
+        max_velocity           : 0.6  # rad/s was 8.5
+        min_velocity           : -0.6  # rad/s was -8.5
         has_acceleration_limits: true
         max_acceleration       : 1.0  # rad/s^2
         min_acceleration       : -1.0   # rad/s^2
