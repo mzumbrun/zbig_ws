@@ -35,14 +35,14 @@ ekf_filter_node:
       #         estimation node from robot_localization! However, that instance should *not* fuse the global data.
       map_frame: map              # Defaults to "map" if unspecified
       odom_frame: odom            # Defaults to "odom" if unspecified
-      base_link_frame: base_footprint  # Defaults to "base_link" if unspecified ##MLZ - was base_footprint_ekf MLZ was base_footprint for imu int
+      base_link_frame: base_footprint_ekf  # Defaults to "base_link" if unspecified ##MLZ - was base_footprint_ekf MLZ was base_footprint for imu int
       world_frame: odom           # Defaults to the value of odom_frame if unspecified
 
       
 
       # IMU Configuration
       # MLZ was imu/out for imu integration according to class. initially imu_ekf
-      imu0: imu/out
+      imu0: imu_ekf
       # Each sensor reading updates some or all of the filter's state. These options give you greater control over which
       # values from each measurement are fed to the filter. For example, if you have an odometry message as input, but only
       # want to use its Z position value, then set the entire vector to false, except for the third entry. The order of the
@@ -65,7 +65,7 @@ ekf_filter_node:
       # odom1, twist0, twist1, imu0, imu1, imu2, etc. The value should be the topic name. These parameters obviously have no
       # default values, and must be specified.
       # MLZ zbig_controller/odom for integration of imu according to class, initially zbig_controller/odom_noisy
-      odom0: zbig_controller/odom
+      odom0: zbig_controller/odom_noisy
 
       # Each sensor reading updates some or all of the filter's state. These options give you greater control over which
       # values from each measurement are fed to the filter. For example, if you have an odometry message as input, but only
