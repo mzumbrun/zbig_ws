@@ -8,6 +8,13 @@ from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
+    
+    pkg_bringup = get_package_share_directory('zbig_bringup')
+    pkg_controller = get_package_share_directory('zbig_controller')
+    pkg_firmware = get_package_share_directory('zbig_firmware')
+    pkg_localization = get_package_share_directory('zbig_localization')
+    pkg_mapping = get_package_share_directory('zbig_mapping')
+    
     use_slam = LaunchConfiguration("use_slam")
 
     use_slam_arg = DeclareLaunchArgument(
@@ -17,7 +24,7 @@ def generate_launch_description():
 
     hardware_interface = IncludeLaunchDescription(
         os.path.join(
-            get_package_share_directory("zbig_firmware"),
+            pkg_firmware,
             "launch",
             "hardware_interface_bigbot.launch.py"
         ),
@@ -32,7 +39,7 @@ def generate_launch_description():
             executable="rplidar_composition",
             name="rplidar_composition",
             parameters=[os.path.join(
-                get_package_share_directory("zbig_bringup"),
+                pkg_bringup,
                 "config",
                 "rplidar_a1.yaml"
             )],
@@ -41,7 +48,7 @@ def generate_launch_description():
     
     controller = IncludeLaunchDescription(
         os.path.join(
-            get_package_share_directory("zbig_controller"),
+            pkg_controller,
             "launch",
             "controller_bigbot.launch.py"
         ),
@@ -53,7 +60,7 @@ def generate_launch_description():
     
     joystick = IncludeLaunchDescription(
         os.path.join(
-            get_package_share_directory("zbig_controller"),
+            pkg_controller,
             "launch",
             "joystick_teleop.launch.py"
         ),
@@ -66,6 +73,18 @@ def generate_launch_description():
         package="zbig_firmware",
         executable="mpu6050_driver.py"
     )
+    
+    ekf_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[
+            os.path.join(pkg_localization, 'config', 'ekf.yaml'),
+            {'use_sim_time': False}
+             ]
+    )
+
 
     safety_stop = Node(
         package="zbig_utils",
@@ -75,7 +94,7 @@ def generate_launch_description():
 
     localization = IncludeLaunchDescription(
         os.path.join(
-            get_package_share_directory("zbig_localization"),
+            pkg_localization,
             "launch",
             "global_localization.launch.py"
         ),
@@ -84,7 +103,7 @@ def generate_launch_description():
 
     slam = IncludeLaunchDescription(
         os.path.join(
-            get_package_share_directory("zbig_mapping"),
+            pkg_mapping,
             "launch",
             "slam.launch.py"
         ),
@@ -98,6 +117,7 @@ def generate_launch_description():
         controller,
      #   joystick,
         imu_driver_node,
+        ekf_node,
      #   safety_stop,
      #   localization,
      #   slam

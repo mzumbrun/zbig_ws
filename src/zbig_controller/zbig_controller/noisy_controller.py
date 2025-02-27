@@ -32,8 +32,8 @@ class NoisyController(Node):
         self.theta_ = 0.0
 
         self.joint_sub_ = self.create_subscription(JointState,"joint_states", self.jointCallback, 10)        
-        self.odom_pub_ = self.create_publisher(Odometry, "zbig_controller/odom_noisy", 10)
-
+        self.odom_pub_ = self.create_publisher(Odometry, "zbig_controller/odom", 10)  #MLZ was odom_noisy
+        
         self.speed_conversion_ = np.array([[self.wheel_radius_/2, self.wheel_radius_/2],
                                            [self.wheel_radius_/self.wheel_separation_, -self.wheel_radius_/self.wheel_separation_]])
         self.get_logger().info("The conversion matrix is %s" % self.speed_conversion_)
@@ -41,7 +41,7 @@ class NoisyController(Node):
         # Fill the Odometry message with invariant parameters
         self.odom_msg_ = Odometry()
         self.odom_msg_.header.frame_id = "odom"
-        self.odom_msg_.child_frame_id = "base_footprint_ekf" #MLZ was base_footprint_ekf
+        self.odom_msg_.child_frame_id = "base_footprint" #MLZ was base_footprint_ekf
         self.odom_msg_.pose.pose.orientation.x = 0.0
         self.odom_msg_.pose.pose.orientation.y = 0.0
         self.odom_msg_.pose.pose.orientation.z = 0.0
@@ -51,7 +51,7 @@ class NoisyController(Node):
         self.br_ = TransformBroadcaster(self)
         self.transform_stamped_ = TransformStamped()
         self.transform_stamped_.header.frame_id = "odom"
-        self.transform_stamped_.child_frame_id = "base_footprint_noisy"
+        self.transform_stamped_.child_frame_id = "base_footprint"  #MLZ was base_footprint_noisy
 
         self.prev_time_ = self.get_clock().now()
 
@@ -63,8 +63,8 @@ class NoisyController(Node):
         # and then converts it in the global frame and publishes the TF
 
         # Add noise to wheel readings
-        wheel_encoder_left = msg.position[1] + np.random.normal(0, 0.005)
-        wheel_encoder_right = msg.position[0] + np.random.normal(0, 0.005)
+        wheel_encoder_left = msg.position[1] + np.random.normal(0, 0.0001)
+        wheel_encoder_right = msg.position[0] + np.random.normal(0, 0.0001)
 
         dp_left = wheel_encoder_left - self.left_wheel_prev_pos_
         dp_right = wheel_encoder_right - self.right_wheel_prev_pos_

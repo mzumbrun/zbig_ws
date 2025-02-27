@@ -48,11 +48,11 @@ def generate_launch_description():
     )
 
     x_arg = DeclareLaunchArgument(
-        'x', default_value='0.0',
+        'x', default_value='1.0',
     )
 
     y_arg = DeclareLaunchArgument(
-        'y', default_value='0.0',
+        'y', default_value='2.5',
     )
     
     z_arg = DeclareLaunchArgument(
@@ -115,6 +115,9 @@ def generate_launch_description():
         output="screen",
         parameters=[
             {'use_sim_time': True}
+        ],
+        remappings=[
+            ('/imu', '/imu/out'),
         ]
     )
 
