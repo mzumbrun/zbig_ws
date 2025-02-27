@@ -117,7 +117,7 @@ def generate_launch_description():
         controller,
      #   joystick,
         imu_driver_node,
-        ekf_node,
+      #  ekf_node,
      #   safety_stop,
      #   localization,
      #   slam
