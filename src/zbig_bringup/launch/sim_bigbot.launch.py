@@ -37,6 +37,9 @@ def generate_launch_description():
     z_arg = DeclareLaunchArgument('z', default_value='0.1',)
     yaw_arg = DeclareLaunchArgument('yaw', default_value='0.0',)
     
+    use_safety_stop = LaunchConfiguration("use_safety_stop")
+    use_safety_stop_arg = DeclareLaunchArgument("use_safety_stop", default_value="false" )
+
     # robot model path
     urdf_file_path = PathJoinSubstitution([pkg_description, "urdf", model])
 
@@ -131,6 +134,7 @@ def generate_launch_description():
     
     joystick = IncludeLaunchDescription(
         os.path.join(
+
             get_package_share_directory("zbig_controller"),
             "launch",
             "joystick_teleop.launch.py"
@@ -144,7 +148,12 @@ def generate_launch_description():
         package="zbig_utils",
         executable="safety_stop.py",
         output="screen",
-        parameters=[{"use_sim_time": True}]
+        parameters=[
+            {"use_sim_time": True,
+             "warning_distance": 0.6,
+             "danger_distance": 0.2,
+             }],
+        condition=IfCondition(use_safety_stop)
     )
 
     slam = IncludeLaunchDescription(
@@ -207,11 +216,12 @@ def generate_launch_description():
         y_arg,
         z_arg,
         yaw_arg,
+        use_safety_stop_arg,
         world_launch,
         spawn_urdf_node,
         gz_bridge_node,
         robot_state_publisher_node,
-        #ekf_node,
+        ekf_node,
         world_arg,
         controller,
         joystick,

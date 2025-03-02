@@ -78,7 +78,11 @@ def generate_launch_description():
         package="zbig_utils",
         executable="safety_stop.py",
         output="screen",
-        parameters=[{"use_sim_time": False}],
+        parameters=[
+            {"use_sim_time": False,
+             "warning_distance": 0.6,
+             "danger_distance": 0.2,
+             }],
         condition=IfCondition(use_safety_stop)
     )
 
