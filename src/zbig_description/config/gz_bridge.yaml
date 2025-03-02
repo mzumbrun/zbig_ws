@@ -33,7 +33,7 @@
   direction: GZ_TO_ROS
 
 # gz topic published by DiffDrive plugin
-- ros_topic_name: "odom"
+- ros_topic_name: "zbig_controller/odom"
   gz_topic_name: "odom"
   ros_type_name: "nav_msgs/msg/Odometry"
   gz_type_name: "gz.msgs.Odometry"
