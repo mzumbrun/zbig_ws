@@ -12,7 +12,7 @@
 
     <xacro:property name="imu_roll" value="0.0"/>
     <xacro:property name="imu_pitch" value="0.0"/>
-    <xacro:property name="imu_yaw" value="1.57"/>
+    <xacro:property name="imu_yaw" value="0.0"/>
 
     <xacro:property name="lidar_roll" value="0.0"/>
     <xacro:property name="lidar_pitch" value="0.0"/>
@@ -199,7 +199,7 @@
                izz="2.30279421279312E-08" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 3.14" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <mesh filename="file://$(find zbig_description)/meshes/imu_link.STL" />
       </geometry>
