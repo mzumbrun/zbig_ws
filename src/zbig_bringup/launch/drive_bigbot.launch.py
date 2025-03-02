@@ -53,7 +53,6 @@ def generate_launch_description():
             "controller_bigbot.launch.py"
         ),
         launch_arguments={
-            "use_simple_controller": "False",
             "use_sim_time": "False"
         }.items(),
     )
@@ -84,7 +83,6 @@ def generate_launch_description():
             {'use_sim_time': False}
              ]
     )
-
 
     safety_stop = Node(
         package="zbig_utils",
@@ -117,7 +115,7 @@ def generate_launch_description():
         controller,
      #   joystick,
         imu_driver_node,
-      #  ekf_node,
+        ekf_node,
      #   safety_stop,
      #   localization,
      #   slam

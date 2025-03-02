@@ -12,10 +12,10 @@ import math
 from tf_transformations import quaternion_from_euler
 
 
-class NoisyController(Node):
+class WheelCalculator(Node):
 
     def __init__(self):
-        super().__init__("noisy_controller")
+        super().__init__("wheel_calculator")
         self.declare_parameter("wheel_radius", 0.074)
         self.declare_parameter("wheel_separation", 0.44)
 
@@ -70,7 +70,7 @@ class NoisyController(Node):
         dp_right = wheel_encoder_right - self.right_wheel_prev_pos_
         dt = Time.from_msg(msg.header.stamp) - self.prev_time_
 
-        # Actualize the prev pose for the next itheration
+        # Actualize the prev pose for the next iteration
         self.left_wheel_prev_pos_ = msg.position[1]
         self.right_wheel_prev_pos_ = msg.position[0]
         self.prev_time_ = Time.from_msg(msg.header.stamp)
@@ -117,10 +117,10 @@ class NoisyController(Node):
 def main():
     rclpy.init()
 
-    noisy_controller = NoisyController()
-    rclpy.spin(noisy_controller)
+    wheel_calculator = WheelCalculator()
+    rclpy.spin(wheel_calculator)
     
-    noisy_controller.destroy_node()
+    wheel_calculator.destroy_node()
     rclpy.shutdown()
 
 

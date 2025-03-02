@@ -15,59 +15,30 @@ def generate_launch_description():
     pkg_mapping = get_package_share_directory('zbig_mapping')
 
     use_slam = LaunchConfiguration("use_slam")
-    use_slam_arg = DeclareLaunchArgument("use_slam",
-        default_value="false"
-    )
+    use_slam_arg = DeclareLaunchArgument("use_slam", default_value="false")
 
     navslam = LaunchConfiguration("navslam")
-    navslam_arg = DeclareLaunchArgument("navslam",
-        default_value="false"
-    )
+    navslam_arg = DeclareLaunchArgument("navslam", default_value="false")
     
     use_map = LaunchConfiguration("use_map")
-    use_map_arg = DeclareLaunchArgument("use_map",
-        default_value="false"
-    )
+    use_map_arg = DeclareLaunchArgument("use_map", default_value="false")
 
     map_name = LaunchConfiguration("map_name")
-    map_name_arg = DeclareLaunchArgument(
-        "map_name",
-        default_value="floor2"
-    )
+    map_name_arg = DeclareLaunchArgument("map_name", default_value="floor2" )
     
     world = LaunchConfiguration("world") 
-    world_arg = DeclareLaunchArgument(
-        name="world", 
-        default_value="empty.world"
-    )
+    world_arg = DeclareLaunchArgument(name="world", default_value="empty.world")
     
     model = LaunchConfiguration("model")
-    model_arg = DeclareLaunchArgument(
-        'model', 
-        default_value='bigbot.urdf.xacro',
-    )
+    model_arg = DeclareLaunchArgument('model', default_value='bigbot.urdf.xacro',)
 
-    x_arg = DeclareLaunchArgument(
-        'x', default_value='1.0',
-    )
-
-    y_arg = DeclareLaunchArgument(
-        'y', default_value='2.5',
-    )
+    x_arg = DeclareLaunchArgument('x', default_value='1.0',)
+    y_arg = DeclareLaunchArgument('y', default_value='2.5',)
+    z_arg = DeclareLaunchArgument('z', default_value='0.1',)
+    yaw_arg = DeclareLaunchArgument('yaw', default_value='0.0',)
     
-    z_arg = DeclareLaunchArgument(
-        'z', default_value='0.1',
-    )
-
-    yaw_arg = DeclareLaunchArgument(
-        'yaw', default_value='0.0',
-    )
     # robot model path
-    urdf_file_path = PathJoinSubstitution([
-        pkg_description,  
-        "urdf",
-        model
-    ])
+    urdf_file_path = PathJoinSubstitution([pkg_description, "urdf", model])
 
     gz_bridge_params_path = os.path.join(
         pkg_description,
@@ -144,7 +115,7 @@ def generate_launch_description():
         parameters=[
             os.path.join(pkg_localization, 'config', 'ekf.yaml'),
             {'use_sim_time': True}
-             ]
+        ]
     )
 
     controller = IncludeLaunchDescription(
@@ -154,7 +125,6 @@ def generate_launch_description():
             "controller_bigbot.launch.py"
         ),
         launch_arguments={
-            "use_simple_controller": "False",
             "use_sim_time": "True",
         }.items(),
     )
@@ -241,7 +211,7 @@ def generate_launch_description():
         spawn_urdf_node,
         gz_bridge_node,
         robot_state_publisher_node,
-        ekf_node,
+        #ekf_node,
         world_arg,
         controller,
         joystick,
