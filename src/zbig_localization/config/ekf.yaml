@@ -1,8 +1,9 @@
 ekf_filter_node:
     ros__parameters:
-      frequency: 50.0
+      frequency: 30.0
 
-      two_d_mode: true
+      two_d_mode: false
+      publish_acceleration: true
       publish_tf: true
 
       map_frame: map             
@@ -11,7 +12,8 @@ ekf_filter_node:
       world_frame: odom          
 
       odom0: zbig_controller/odom
-      imu0: imu/out
+      odom0_differential: false
+      odom0_pose_use_child_frame: false
 
         #        [x_pos   , y_pos    , z_pos,
         #         roll    , pitch    , yaw,
@@ -22,12 +24,22 @@ ekf_filter_node:
       odom0_config: [false, false, false,
                       false, false, false,
                       true, true, false, 
-                      false, false, false,
+                      false, false, true,
                       false, false, false]
 
+      imu0: imu/out
+      imu0_differential: true
+      imu0_pose_use_child_frame: false
+
+        #        [x_pos   , y_pos    , z_pos,
+        #         roll    , pitch    , yaw,
+        #         x_vel   , y_vel    , z_vel,
+        #         roll_vel, pitch_vel, yaw_vel,
+        #         x_accel , y_accel  , z_accel]
+
       imu0_config: [false, false, false, 
-                    false, false, true, 
+                    false, false, false, 
                     false, false, false,
                     false, false, true, 
-                    true, false, false]
+                    false, false, false]
 

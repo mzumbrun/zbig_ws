@@ -1,6 +1,7 @@
 controller_manager:
   ros__parameters:
     update_rate: 30 # Hz
+    lock_memory: false
 
     zbig_controller:
       type: diff_drive_controller/DiffDriveController

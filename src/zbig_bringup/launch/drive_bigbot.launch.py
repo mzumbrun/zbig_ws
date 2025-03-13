@@ -16,11 +16,10 @@ def generate_launch_description():
     pkg_mapping = get_package_share_directory('zbig_mapping')
     
     use_slam = LaunchConfiguration("use_slam")
-
-    use_slam_arg = DeclareLaunchArgument(
-        "use_slam",
-        default_value="false"
-    )
+    use_slam_arg = DeclareLaunchArgument("use_slam", default_value="false" )
+    
+    use_ekf = LaunchConfiguration("use_ekf")
+    use_ekf_arg = DeclareLaunchArgument("use_ekf", default_value="false" )
 
     hardware_interface = IncludeLaunchDescription(
         os.path.join(
@@ -81,7 +80,8 @@ def generate_launch_description():
         parameters=[
             os.path.join(pkg_localization, 'config', 'ekf.yaml'),
             {'use_sim_time': False}
-             ]
+             ],
+        condition=IfCondition(use_ekf)
     )
 
     safety_stop = Node(
@@ -110,6 +110,7 @@ def generate_launch_description():
     
     return LaunchDescription([
         use_slam_arg,
+        use_ekf_arg,
         hardware_interface,
      #   laser_driver,
         controller,
