@@ -15,7 +15,7 @@
 
  
   <!-- Include gazebo Plugins for SIM only -->
-  <xacro:if value="$(arg use_ros2_control)">
+  <xacro:if value="$(arg is_sim)">
       <xacro:include filename="$(find zbig_description)/urdf/bigbot_gazebo_control.xacro" />
   </xacro:if>
 

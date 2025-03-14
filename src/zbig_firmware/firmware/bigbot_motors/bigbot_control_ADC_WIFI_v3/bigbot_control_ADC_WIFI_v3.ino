@@ -94,7 +94,7 @@ void setup() {
     Kp = KpR;
     Ki = KiR;
     Kd = KdR;
-    Motor.setOutputLimits(16, 80);  // left 20,80, right 20,80 for now
+    Motor.setOutputLimits(16, 255);  // left 20,80, right 20,80 for now
     Motor.setCoefficients(Kp, Ki, Kd);
   } else {
     wheel_side[0] = 'l';
@@ -103,7 +103,7 @@ void setup() {
     Kp = KpL;
     Ki = KiL;
     Kd = KdL;
-    Motor.setOutputLimits(20, 80);  // left 20,80, right 20,80 for now
+    Motor.setOutputLimits(20, 255);  // left 20,80, right 20,80 for now
     Motor.setCoefficients(Kp, Ki, Kd);
   }
 }
