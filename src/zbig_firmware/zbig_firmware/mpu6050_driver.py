@@ -30,8 +30,8 @@ class MPU6050_Driver(Node):
         self.init_i2c()
 
         # ROS 2 Interface
-        #self.imu_pub_ = self.create_publisher(Imu, "/imu/out", qos_profile=qos_profile_sensor_data)
-        self.imu_pub_ = self.create_publisher(Imu, "/imu/out", 10)
+        self.imu_pub_ = self.create_publisher(Imu, "/imu/out", qos_profile=qos_profile_sensor_data)
+        #self.imu_pub_ = self.create_publisher(Imu, "/imu/out", 10)
         self.imu_msg_ = Imu()
         self.imu_msg_.header.frame_id = "base_footprint"
         self.frequency_ = 0.01
