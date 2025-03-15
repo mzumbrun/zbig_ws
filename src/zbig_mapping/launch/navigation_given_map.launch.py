@@ -55,7 +55,7 @@ def generate_launch_description():
     navigation_params_path = os.path.join(
         pkg_mapping,
         'config',
-        'navigation.yaml'
+        'nav2_params.yaml'
     )
 
     map_file_path = PathJoinSubstitution([

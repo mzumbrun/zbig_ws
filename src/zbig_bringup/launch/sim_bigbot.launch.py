@@ -13,6 +13,9 @@ def generate_launch_description():
     pkg_description = get_package_share_directory('zbig_description')
     pkg_localization = get_package_share_directory('zbig_localization')
     pkg_mapping = get_package_share_directory('zbig_mapping')
+    
+    use_sim_time = LaunchConfiguration("use_sim_time")
+    use_sim_time_arg = DeclareLaunchArgument("use_sim_time", default_value="true")
 
     use_slam = LaunchConfiguration("use_slam")
     use_slam_arg = DeclareLaunchArgument("use_slam", default_value="false")
@@ -74,7 +77,7 @@ def generate_launch_description():
         ],
         output="screen",
         parameters=[
-            {'use_sim_time': True}
+            {'use_sim_time': use_sim_time}
         ]
     )
 
@@ -88,7 +91,7 @@ def generate_launch_description():
         ],
         output="screen",
         parameters=[
-            {'use_sim_time': True}
+            {'use_sim_time': use_sim_time}
         ],
         remappings=[
             ('/imu', '/imu/out'),
@@ -102,7 +105,7 @@ def generate_launch_description():
         output='screen',
         parameters=[
             {'robot_description': Command(['xacro', ' ', urdf_file_path]),
-             'use_sim_time': True}
+             'use_sim_time': use_sim_time}
         ],
         remappings=[
             ('/tf', 'tf'),
@@ -117,7 +120,7 @@ def generate_launch_description():
         output='screen',
         parameters=[
             os.path.join(pkg_localization, 'config', 'ekf.yaml'),
-            {'use_sim_time': True}
+            {'use_sim_time': use_sim_time}
         ]
     )
 
@@ -128,7 +131,7 @@ def generate_launch_description():
             "controller_bigbot.launch.py"
         ),
         launch_arguments={
-            "use_sim_time": "True",
+            "use_sim_time": use_sim_time,
         }.items(),
     )
     
@@ -140,7 +143,7 @@ def generate_launch_description():
             "joystick_teleop.launch.py"
         ),
         launch_arguments={
-            "use_sim_time": "True",
+            "use_sim_time": use_sim_time,
         }.items()
     )
 
@@ -175,7 +178,7 @@ def generate_launch_description():
             )
         ],
         output="screen",
-        parameters=[{"use_sim_time": True}],
+        parameters=[{"use_sim_time": use_sim_time}],
         condition=IfCondition(use_slam)
     )
 
@@ -186,7 +189,7 @@ def generate_launch_description():
             "navigation_given_map.launch.py"
         ),
         launch_arguments={
-            "use_sim_time": "True",
+            "use_sim_time": use_sim_time,
             "map_name": map_name,
         }.items(),
         condition=IfCondition(use_map)
@@ -199,13 +202,14 @@ def generate_launch_description():
             "navigation_with_slam.launch.py"
         ),
         launch_arguments={
-            "use_sim_time": "True",
+            "use_sim_time": use_sim_time,
         }.items(),
         condition=IfCondition(navslam)
     )
 
     
     return LaunchDescription([
+        use_sim_time_arg,
         use_slam_arg,
         navslam_arg,
         use_map_arg,
