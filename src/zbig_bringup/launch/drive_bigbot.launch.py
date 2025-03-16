@@ -14,6 +14,12 @@ def generate_launch_description():
     pkg_firmware = get_package_share_directory('zbig_firmware')
     pkg_localization = get_package_share_directory('zbig_localization')
     pkg_mapping = get_package_share_directory('zbig_mapping')
+    pkg_mpu_6050 = get_package_share_directory('ros2_mpu6050')
+
+    param_file = LaunchConfiguration('param_file')
+    params_arg = DeclareLaunchArgument('param_file',
+                                        default_value=os.path.join(pkg_mpu_6050, 'config', 'params.yaml'),
+                                        description='Path to the ROS2 parameter file')
     
     use_slam = LaunchConfiguration("use_slam")
     use_slam_arg = DeclareLaunchArgument("use_slam", default_value="false" )
@@ -72,6 +78,15 @@ def generate_launch_description():
         executable="mpu6050_driver.py"
     )
     
+    mpu6050_sensor = Node(
+        package='ros2_mpu6050',
+        executable='ros2_mpu6050',
+        name='mpu6050_sensor',
+        output="screen",
+        emulate_tty=True,
+        parameters=[param_file]
+    )
+    
     ekf_node = Node(
         package='robot_localization',
         executable='ekf_node',
@@ -109,13 +124,15 @@ def generate_launch_description():
     )
     
     return LaunchDescription([
+        params_arg,
         use_slam_arg,
         use_ekf_arg,
         hardware_interface,
      #   laser_driver,
         controller,
      #   joystick,
-        imu_driver_node,
+     #  imu_driver_node,
+        mpu6050_sensor,
         ekf_node,
      #   safety_stop,
      #   localization,

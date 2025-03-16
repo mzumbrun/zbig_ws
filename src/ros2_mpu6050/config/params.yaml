@@ -38,11 +38,13 @@ mpu6050_sensor:
     #   7    |  Stops the clock and keeps the timing generator in reset
     clock_src: 0
 
-    # [deg/s]
-    gyro_x_offset: 0.0
-    gyro_y_offset: 0.0
-    gyro_z_offset: 0.0
-    # [m/s²]
-    accel_x_offset: 0.0
-    accel_y_offset: 0.0
-    accel_z_offset: 0.0
+# Gyroscope Offsets[deg/s]: 
+    gyro_x_offset: -1.51991
+    gyro_y_offset: -0.51316
+    gyro_z_offset: -0.879588
+
+# Accelerometer Offsets[m/s2]: 
+    accel_x_offset: 0.414827
+    accel_y_offset: -0.447859
+    accel_z_offset: 9.35979
+

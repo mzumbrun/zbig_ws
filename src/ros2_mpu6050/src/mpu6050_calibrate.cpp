@@ -50,10 +50,10 @@ void calibration()
     /* Display results */
     std::cout << "\n\nIn the params.yaml file under config directory, copy the following results accordingly\n" << std::endl;
     
-    std::cout << "Gyroscope Offsets: \ngyro_x_offset --> " << gyro_x_offset << "\ngyro_y_offset --> "
-              << gyro_y_offset << "\ngyro_z_offset --> " << gyro_z_offset << std::endl;
-    std::cout << "\nAccelerometer Offsets: \naccel_x_offset --> " << accel_x_offset << "\naccel_y_offset --> "
-              << accel_y_offset << "\naccel_z_offset --> " << accel_z_offset << std::endl;
+    std::cout << "# Gyroscope Offsets[deg/s]: \n    gyro_x_offset: " << gyro_x_offset << "\n    gyro_y_offset: "
+              << gyro_y_offset << "\n    gyro_z_offset: " << gyro_z_offset << std::endl;
+    std::cout << "\n# Accelerometer Offsets[m/s2]: \n    accel_x_offset: " << accel_x_offset << "\n    accel_y_offset: "
+              << accel_y_offset << "\n    accel_z_offset: " << accel_z_offset << std::endl;
 
 }
 

@@ -35,7 +35,7 @@ Mpu6050Node::Mpu6050Node(const std::string& name)
     mpu6050_dev_->Mpu6050_DlpfConfig(static_cast<Mpu6050::Mpu6050_DlpfCfg_t>(this->get_parameter("dlpf_cfg").as_int()));
     mpu6050_dev_->Mpu6050_ClockSelect(static_cast<Mpu6050::Mpu6050_ClkSrc_t>(this->get_parameter("clock_src").as_int()));
 
-    publisher_ = this->create_publisher<sensor_msgs::msg::Imu>("imu/mpu6050", 10);
+    publisher_ = this->create_publisher<sensor_msgs::msg::Imu>("imu/out", 10);
 
     timer_ = this->create_wall_timer(10ms, std::bind(&Mpu6050Node::ImuPubCallback, this));
 }
@@ -44,7 +44,7 @@ void Mpu6050Node::ImuPubCallback()
 {
     auto message = sensor_msgs::msg::Imu();
     message.header.stamp = this->get_clock()->now();
-    message.header.frame_id = "base_link";
+    message.header.frame_id = "base_footprint";
     message.linear_acceleration_covariance = {0};
 
     /* Read IMU data */
