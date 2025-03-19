@@ -361,9 +361,9 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
-    - Alpha: 1
+    - Alpha: 2
       Class: rviz_default_plugins/Polygon
-      Color: 25; 255; 0
+      Color: 97; 53; 131
       Enabled: true
       Name: Robot footprint
       Topic:
