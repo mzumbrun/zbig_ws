@@ -12,11 +12,11 @@
 
     <xacro:property name="imu_roll" value="0.0"/>
     <xacro:property name="imu_pitch" value="0.0"/>
-    <xacro:property name="imu_yaw" value="0.0"/>
+    <xacro:property name="imu_yaw" value="3.14"/>
 
     <xacro:property name="lidar_roll" value="0.0"/>
     <xacro:property name="lidar_pitch" value="0.0"/>
-    <xacro:property name="lidar_yaw" value="3.14"/>
+    <xacro:property name="lidar_yaw" value="0.0"/>
 
     <xacro:property name="chassis_mass" value="10.0"/>
     <xacro:property name="wheel_mass" value="0.05"/>
@@ -224,7 +224,7 @@
 
   <link name="laser_frame">
     <inertial>
-      <origin xyz="0.005399 -0.010876 0.002517" rpy="0 0 0" />
+      <origin xyz="0.005399 -0.010876 0.002517" rpy="0 0 ${lidar_yaw}" />
       <mass value="0.07308" />
       <inertia ixx="0.000039" ixy="-0.000011" ixz="0.000003"
                iyy="0.000063" iyz="-0.000005"
