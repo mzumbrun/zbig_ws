@@ -12,7 +12,7 @@
 
     <xacro:property name="imu_roll" value="0.0"/>
     <xacro:property name="imu_pitch" value="0.0"/>
-    <xacro:property name="imu_yaw" value="3.14"/>
+    <xacro:property name="imu_yaw" value="0.0"/>
 
     <xacro:property name="lidar_roll" value="0.0"/>
     <xacro:property name="lidar_pitch" value="0.0"/>
