@@ -17,7 +17,7 @@
     <xacro:property name="lidar_roll" value="0.0"/>
     <xacro:property name="lidar_pitch" value="0.0"/>
     <xacro:if value="$(arg is_sim)">
-      <xacro:property name="lidar_yaw" value="0.00"/>
+      <xacro:property name="lidar_yaw" value="3.14"/>
     </xacro:if>
     <xacro:unless value="$(arg is_sim)">
       <xacro:property name="lidar_yaw" value="3.14"/>

@@ -41,9 +41,18 @@ controller_server:
       plugin: "nav2_controller::SimpleGoalChecker"
       xy_goal_tolerance: 0.15
       yaw_goal_tolerance: 0.15
-    # DWB parameters
+
     FollowPath:
-      plugin: "dwb_core::DWBLocalPlanner"
+      plugin: "nav2_rotation_shim_controller::RotationShimController"
+    # plugin: "dwb_core::DWBLocalPlanner"
+    # shim parameters
+      angular_dist_threshold: 0.5
+      forward_sampling_distance: 0.5
+      rotate_to_heading_angular_vel: 3.0
+      max_angular_accel: 3.2
+      simulate_ahead_time: 1.0
+      rotate_to_goal_heading: false
+    # DWB parameters
       debug_trajectory_details: True
       min_vel_x: 0.0
       min_vel_y: 0.0
@@ -82,9 +91,9 @@ controller_server:
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
       publish_cost_grid_pc: True
-    # MPPI parameters, default controller is DWB above
-    FollowPathMPPI:
-      plugin: "nav2_mppi_controller::MPPIController"
+    # MPPI parameters, DWB is above
+    # FollowPathMPPI:
+      primary_controller: "nav2_mppi_controller::MPPIController"
       time_steps: 56
       model_dt: 0.05
       batch_size: 2000
@@ -183,12 +192,12 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      robot_radius: 0.26
+      footprint: "[ [0.1, 0.25], [0.1, -0.25], [-0.21, -0.25], [-0.21, 0.25] ]"
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.35
+        inflation_radius: 0.25
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -221,7 +230,7 @@ global_costmap:
       publish_frequency: 1.0
       global_frame: map
       robot_base_frame: base_link
-      robot_radius: 0.22
+      footprint: "[ [0.1, 0.25], [0.1, -0.25], [-0.21, -0.25], [-0.21, 0.25] ]"
       resolution: 0.05
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
@@ -245,7 +254,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.35
+        inflation_radius: 0.32
       always_send_full_costmap: True
 
 

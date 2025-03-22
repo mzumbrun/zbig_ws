@@ -46,7 +46,7 @@ def generate_launch_description():
     navigation_params_path = os.path.join(
         pkg_mapping,
         'config',
-        'nav2_params.yaml'
+        'navigation.yaml'
     )
 
     slam_toolbox_params_path = os.path.join(
