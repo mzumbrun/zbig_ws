@@ -236,7 +236,7 @@
                izz="0.000057" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="1.57 0 3.14" />
+      <origin xyz="0 0 0" rpy="1.57 0 0" />
       <geometry>
         <mesh filename="file://$(find zbig_description)/meshes/lidarA1M8.stl" />
       </geometry>
