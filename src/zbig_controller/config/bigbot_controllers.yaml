@@ -20,7 +20,7 @@ zbig_controller:
     pose_covariance_diagonal : [0.001, 0.001, 1.0e-3, 1.0e-3, 1.0e-3, 0.01]
     twist_covariance_diagonal: [0.001, 0.001, 1.0e-3, 1.0e-3, 1.0e-3, 0.01]
 
-    wheel_separation : 0.471 # .445 = 17.5 inches
+    wheel_separation : 0.470 # .445 = 17.5 inches
     wheel_radius : 0.072 # .063 = 2.5 inch radius
 
     wheel_separation_multiplier: 1.0
@@ -47,7 +47,7 @@ zbig_controller:
     linear:
       x:
         has_velocity_limits    : true
-        max_velocity           : 2.0  # m/s was 0.7
+        max_velocity           : 0.5  # m/s was 0.7
         min_velocity           : -0.7 # m/s was -0.7
         has_acceleration_limits: true
         max_acceleration       : 0.5  # m/s^2
@@ -57,7 +57,7 @@ zbig_controller:
     angular:
       z:
         has_velocity_limits    : true
-        max_velocity           : 5.0  # rad/s was 8.5
+        max_velocity           : 1.0  # rad/s was 8.5
         min_velocity           : -1.6  # rad/s was -8.5
         has_acceleration_limits: true
         max_acceleration       : 1.0  # rad/s^2
