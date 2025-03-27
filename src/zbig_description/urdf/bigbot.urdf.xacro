@@ -19,5 +19,8 @@
       <xacro:include filename="$(find zbig_description)/urdf/bigbot_gazebo_control.xacro" />
   </xacro:if>
 
-
+  <!-- Include sensors -->
+  <!-- <xacro:include filename="$(find zbig_description)/urdf/camera.xacro" /> -->
+  <xacro:include filename="$(find zbig_description)/urdf/depth_camera.xacro" />
+  
 </robot>

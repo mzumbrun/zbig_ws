@@ -138,7 +138,7 @@
   </gazebo>
 
   <!-- rgb camera -->
-  <gazebo reference="rgb_camera">
+  <!-- <gazebo reference="rgb_camera">
     <sensor name="camera" type="camera">
       <always_on>true</always_on>
       <visualize>true</visualize>
@@ -163,7 +163,7 @@
         </distortion>
       </camera>
     </sensor>     
-  </gazebo>
+  </gazebo> -->
 
     <!-- left arm joints
   <gazebo reference="joint_1">
