@@ -14,6 +14,12 @@
             </geometry>
             <material name="blue"/>
         </visual>
+        <collision>
+            <geometry>
+                <box size="0.010 0.03 0.03"/>
+            </geometry>
+            <material name="blue"/>
+        </collision>
     </link>
 
 
@@ -29,14 +35,16 @@
     <gazebo reference="depth_camera_link">
         <material>Gazebo/Red</material>
 
-      <sensor name="depth_camera" type="rgbd_camera">
+      <sensor name="depth_camera" type="depth_camera">
         <always_on>true</always_on>
         <visualize>true</visualize>
         <update_rate>5.0</update_rate>
         <topic>depth_camera</topic>
-        <gz_frame_id>depth_camera_link</gz_frame_id>
-        <camera>
-          <horizontal_fov>2.3</horizontal_fov>
+        <!-- <frame_id>depth_camera_link</frame_id> -->
+        <frame_id>depth_camera_link</frame_id>
+        <camera name="OAK">
+          <camera_info_topic>depth_camera_info</camera_info_topic>  
+          <horizontal_fov>1.047198</horizontal_fov>
           <!-- <vertical_fov>0.5</vertical_fov> -->
           <image>
             <width>480</width>
@@ -46,8 +54,16 @@
             <near>0.05</near>
             <far>3</far>
           </clip>
+          <depth_camera>
+            <output>depths</output>
+            <clip>
+              <near>0.05</near>
+              <far>4</far>
+            </clip>
+          </depth_camera>
+          <optical_frame_id>depth_camera_link</optical_frame_id>
         </camera>
-        <baseline>0.2</baseline>
+        <!-- <baseline>0.2</baseline>
         <pointCloudCutoff>0.5</pointCloudCutoff>
         <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
         <distortionK1>0</distortionK1>
@@ -59,7 +75,7 @@
         <Cx>0</Cx>
         <Cy>0</Cy>
         <focalLength>0</focalLength>
-        <hackBaseline>0</hackBaseline>
+        <hackBaseline>0</hackBaseline> -->
       </sensor>
 
     </gazebo>
