@@ -20,7 +20,7 @@
   </xacro:if>
 
   <!-- Include sensors -->
-  <!-- <xacro:include filename="$(find zbig_description)/urdf/camera.xacro" /> -->
+  <xacro:include filename="$(find zbig_description)/urdf/camera.xacro" />
   <xacro:include filename="$(find zbig_description)/urdf/depth_camera.xacro" />
   
 </robot>

@@ -11,6 +11,12 @@
   gz_type_name: "gz.msgs.LaserScan"
   direction: GZ_TO_ROS
 
+# - ros_topic_name: "/scan/points"
+#   gz_topic_name: "/scan/points"
+#   ros_type_name: "sensor_msgs/msg/PointCloud2"
+#   gz_type_name: "gz.msgs.PointCloudPacked"
+#   direction: GZ_TO_ROS
+
 # gz topic published by IMU plugin
 - ros_topic_name: "imu/out"
   gz_topic_name: "imu"
@@ -18,8 +24,22 @@
   gz_type_name: "gz.msgs.IMU"
   direction: GZ_TO_ROS
 
+# gz topic published by depth camera plugin
+- ros_topic_name: "/depth_camera/camera_info"
+  gz_topic_name: "/depth_camera/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "gz.msgs.CameraInfo"
+  direction: GZ_TO_ROS
+
+# gz topic published by depth camera plugin 
+- ros_topic_name: "/depth_camera/points"
+  gz_topic_name: "/depth_camera/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  direction: GZ_TO_ROS
+
 # gz topic published by rgb camera plugin
-- ros_topic_name: "camera"
+- ros_topic_name: "camera/image_raw"
   gz_topic_name: "camera"
   ros_type_name: "sensor_msgs/msg/Image"
   gz_type_name: "gz.msgs.Image"
