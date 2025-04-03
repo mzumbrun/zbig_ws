@@ -3,6 +3,7 @@ install/
 log/
 .vscode/
 *.swp
+.cache/
 src/zbig_firmware/firmware/tools/PID_tune2/arduino_secrets.h
 src/zbig_firmware/firmware/smallbot_motors/smallbot_adc_mqtt/arduino_secrets.h
 src/zbig_firmware/firmware/bigbot_motors/bigbot_control_MQTT/arduino_secrets.h

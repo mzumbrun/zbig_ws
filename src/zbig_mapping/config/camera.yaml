@@ -1,0 +1,42 @@
+/oak:
+  ros__parameters:
+    camera:
+      i_enable_imu: false
+      i_enable_ir: false
+      i_nn_type: none
+      i_pipeline_type: RGBD
+      i_low_bandwidth: true
+      i_mx_id: "14442C10E14DF5D600"
+    rgb:
+      i_fps: 15.0
+    #   # i_height: 480
+    #   i_low_bandwidth: true
+    # # #   i_resolution: 1080P
+    # # #   i_width: 480
+    # stereo:
+    #   i_align_depth: true
+    #   i_board_socket_id: 2
+    #   i_subpixel: true
+    #   i_right_rect_publish_topic: true
+    #   i_right_rect_synced: false
+    # # #   i_height: 480
+    #   i_low_bandwidth: true
+    # #   i_resolution: 1080P
+    # #   i_width: 480
+    # #   i_align_depth: true
+    # #   i_board_socket_id: 2
+    # #   i_subpixel: true
+    # #   i_right_rect_publish_topic: true
+    # #   i_right_rect_synced: false
+    # left:
+    # # #   i_fps: 10.0
+    # # #   i_height: 480
+    #   i_low_bandwidth: true
+    # # #   i_resolution: 1080P
+    # # #   i_width: 480
+    # right:
+    # # #   i_fps: 10.0
+    # # #   i_height: 480
+    #   i_low_bandwidth: true
+    # # #   i_resolution: 1080P
+    # # #   i_width: 480

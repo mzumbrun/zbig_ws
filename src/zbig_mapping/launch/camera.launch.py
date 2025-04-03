@@ -281,12 +281,13 @@ def launch_setup(context, *args, **kwargs):
 
 def generate_launch_description():
     depthai_prefix = get_package_share_directory("depthai_ros_driver")
+    config_prefix = get_package_share_directory("zbig_mapping")
 
     declared_arguments = [
         DeclareLaunchArgument("name", default_value="oak"),
         DeclareLaunchArgument("namespace", default_value=""),
         DeclareLaunchArgument("parent_frame", default_value="oak-d-base-frame"),
-        DeclareLaunchArgument("camera_model", default_value="OAK-D-PRO"),
+        DeclareLaunchArgument("camera_model", default_value="OAK-D-LITE"),
         DeclareLaunchArgument("cam_pos_x", default_value="0.0"),
         DeclareLaunchArgument("cam_pos_y", default_value="0.0"),
         DeclareLaunchArgument("cam_pos_z", default_value="0.0"),
@@ -295,7 +296,7 @@ def generate_launch_description():
         DeclareLaunchArgument("cam_yaw", default_value="0.0"),
         DeclareLaunchArgument(
             "params_file",
-            default_value=os.path.join(depthai_prefix, "config", "camera.yaml"),
+            default_value=os.path.join(config_prefix, "config", "camera.yaml"),
         ),
         DeclareLaunchArgument("use_rviz", default_value="false"),
         DeclareLaunchArgument(
@@ -328,13 +329,13 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument("rectify_rgb", default_value="true"),
         DeclareLaunchArgument("pointcloud.enable", default_value="false"),
-        DeclareLaunchArgument("enable_color", default_value="true"),
+        DeclareLaunchArgument("enable_color", default_value="false"),
         DeclareLaunchArgument("enable_depth", default_value="true"),
         DeclareLaunchArgument("enable_infra1", default_value="false"),
         DeclareLaunchArgument("enable_infra2", default_value="false"),
-        DeclareLaunchArgument("depth_module.depth_profile", default_value="1280,720,30"),
-        DeclareLaunchArgument("rgb_camera.color_profile", default_value="480,480,30"),
-        DeclareLaunchArgument("depth_module.infra_profile", default_value="1280,720,30"),
+        DeclareLaunchArgument("depth_module.depth_profile", default_value="256,256,10"),
+        DeclareLaunchArgument("rgb_camera.color_profile", default_value="256,256,10"),
+        DeclareLaunchArgument("depth_module.infra_profile", default_value="256,256,10"),
     ]
 
     return LaunchDescription(
