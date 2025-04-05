@@ -333,9 +333,9 @@ def generate_launch_description():
         DeclareLaunchArgument("enable_depth", default_value="true"),
         DeclareLaunchArgument("enable_infra1", default_value="false"),
         DeclareLaunchArgument("enable_infra2", default_value="false"),
-        DeclareLaunchArgument("depth_module.depth_profile", default_value="256,256,10"),
-        DeclareLaunchArgument("rgb_camera.color_profile", default_value="256,256,10"),
-        DeclareLaunchArgument("depth_module.infra_profile", default_value="256,256,10"),
+        DeclareLaunchArgument("depth_module.depth_profile", default_value="480,480,10"),
+        DeclareLaunchArgument("rgb_camera.color_profile", default_value="480,480,10"),
+        DeclareLaunchArgument("depth_module.infra_profile", default_value="480,480,10"),
     ]
 
     return LaunchDescription(

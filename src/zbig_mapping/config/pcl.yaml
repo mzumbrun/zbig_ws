@@ -10,7 +10,7 @@
       i_subpixel: true
       i_right_rect_publish_topic: true
       i_right_rect_synced: false
-      i_low_bandwidth: true
+      # i_low_bandwidth: true
     # left:
     #   i_low_bandwidth: true
     # right:

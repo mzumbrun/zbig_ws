@@ -1,0 +1,41 @@
+/oak:
+  ros__parameters:
+    camera:
+      i_mx_id: "14442C10E14DF5D600"
+      i_nn_type: none
+      i_publish_tf_from_calibration: true
+      i_tf_camera_model: "OAK-D-LITE"
+      i_restart_on_diagnostics_error: true
+      i_tf_parent_frame: oak-d-base-frame
+    pipeline_gen:
+      i_enable_diagnostics: false
+      i_enable_imu: false
+      i_enable_sync: false
+    stereo:
+      i_subpixel: true
+      i_left_rect_low_bandwidth: true
+      i_low_bandwidth: true
+      i_right_rect_low_bandwidth: true
+      i_fps: 2
+      i_resolution: "400P"
+      i_depth_preset: HIGH_DENSITY
+      i_enable_threshold_filter: true
+      i_threshold_filter_min_range: 400
+      i_threshold_filter_max_range: 1500
+    left:
+      i_fps: 2.0
+      i_low_bandiwdth_frame_freq: 5
+      i_resolution: "400P"
+      i_height: 360
+      i_width: 640
+    right:
+      i_fps: 2.0
+      i_low_bandiwdth_frame_freq: 5
+      i_resolution: "400P"
+      i_height: 360
+      i_width: 640
+    rgb:
+      i_fps: 2.0
+      i_low_bandiwdth_frame_freq: 5
+      i_resolution: "1080P"
+
