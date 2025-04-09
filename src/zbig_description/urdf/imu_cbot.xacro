@@ -9,7 +9,7 @@
   <!-- IMU JOINT -->
 
   <joint name="imu_joint" type="fixed">
-    <origin xyz="-0.04016 0.049755 0.064953" rpy="${imu_roll} ${imu_pitch} ${imu_yaw}" />
+    <origin xyz="0.151167 0.0 0.092" rpy="${imu_roll} ${imu_pitch} ${imu_yaw}" />
     <parent link="base_link" />
     <child link="imu_link" />
     <axis xyz="0 0 0" />
@@ -26,16 +26,16 @@
                izz="2.30279421279312E-08" />
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0.125 0 -0.093625" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-imu.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-imu.stl" />
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="${imu_roll} ${imu_pitch} ${imu_yaw}" />
+      <origin xyz="0.125 0 -0.093625" rpy="${imu_roll} ${imu_pitch} ${imu_yaw}" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-imu.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-imu.stl" />
       </geometry>
     </collision>
   </link>

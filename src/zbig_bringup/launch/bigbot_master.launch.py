@@ -102,6 +102,7 @@ def generate_launch_description():
         ),
         launch_arguments={
             "use_sim_time": "True",
+            "wheel_separation": "0.445",
         }.items(),
         condition=IfCondition(use_sim_time)
     )

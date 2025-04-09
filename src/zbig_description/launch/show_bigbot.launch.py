@@ -3,7 +3,7 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.substitutions import Command, LaunchConfiguration
+from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
 
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
@@ -12,12 +12,10 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
     zbig_description_dir = get_package_share_directory("zbig_description")
 
-    model_arg = DeclareLaunchArgument(name="model", default_value=os.path.join(
-                                        zbig_description_dir, "urdf", "bigbot.urdf.xacro"
-                                        ),
-                                      description="Absolute path to robot urdf file")
+    model_arg = DeclareLaunchArgument(name="model", default_value="bigbot.urdf.xacro",)
+    model_name = PathJoinSubstitution([zbig_description_dir, "urdf", LaunchConfiguration("model")])
 
-    robot_description = ParameterValue(Command(["xacro ", LaunchConfiguration("model")]),
+    robot_description = ParameterValue(Command(["xacro ", model_name]),
                                        value_type=str)
 
     robot_state_publisher_node = Node(

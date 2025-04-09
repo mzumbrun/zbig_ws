@@ -72,7 +72,7 @@
     <visual>
       <origin xyz="-0.0 0.0 0.0" rpy="1.57 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-6inch-wheel.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-6inch-wheel.stl" />
       </geometry>
       <material name="blue"/>
     </visual>
@@ -105,7 +105,7 @@
     <visual>
       <origin xyz="0 0.0 0" rpy="-1.57 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-6inch-wheel.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-6inch-wheel.stl" />
       </geometry>
       <material name="blue"/>
     </visual>
@@ -137,7 +137,7 @@
     <visual>
       <origin xyz="0 ${wheel_offset_z} 0" rpy="0 1.57 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/visual-caster-narrow1.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/visual-caster-narrow1.stl" />
       </geometry>
       <material name="silver"/>
     </visual>
@@ -169,7 +169,7 @@
     <visual>
       <origin xyz="0 ${wheel_offset_z} 0" rpy="0 -1.57 0.0" />
       <geometry>
-         <mesh filename="file://$(find zbig_description)/meshes/narrowbot/visual-caster-narrow1.stl" />
+         <mesh filename="file://$(find zbig_description)/meshes/cbot/visual-caster-narrow1.stl" />
       </geometry>
       <material name="silver"/>
     </visual>
@@ -201,14 +201,14 @@
     <visual>
       <origin xyz="0.12 0 -.095" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-imu.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-imu.stl" />
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
       <origin xyz="0.1 0 -.10" rpy="${imu_roll} ${imu_pitch} ${imu_yaw}" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-imu.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-imu.stl" />
       </geometry>
     </collision>
   </link>
@@ -233,14 +233,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="1.57 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-lidar.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-lidar.stl" />
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="${lidar_roll} ${lidar_pitch} ${lidar_yaw}" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-lidar.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-lidar.stl" />
       </geometry>
     </collision>
   </link>

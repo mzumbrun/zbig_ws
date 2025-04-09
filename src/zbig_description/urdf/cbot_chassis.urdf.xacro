@@ -3,11 +3,11 @@
 
     <xacro:property name="wheel_radius" value="0.074"/>
     <xacro:property name="wheel_offset_y" value="0.15283"/>
-    <xacro:property name="wheel_offset_z" value="0.0225"/>
+    <xacro:property name="wheel_offset_z" value="0.0"/>
 
-    <xacro:property name="caster_wheel_radius" value="0.051"/>   
+    <xacro:property name="caster_wheel_radius" value="0.0254"/>   
     <xacro:property name="caster_wheel_offset_x" value="0.137"/>
-    <xacro:property name="caster_wheel_offset_y" value="0.095"/>
+    <xacro:property name="caster_wheel_offset_y" value="0.0"/>
     <xacro:property name="caster_wheel_offset_z" value="${wheel_offset_z - wheel_radius + caster_wheel_radius}"/>
 
     <xacro:property name="chassis_mass" value="10.0"/>
@@ -40,17 +40,17 @@
     <axis xyz="0 1 0" />
   </joint>
 
-  <joint name="caster_right_joint" type="fixed">
-    <origin xyz="${-caster_wheel_offset_x} ${-caster_wheel_offset_y} ${-caster_wheel_offset_z}" rpy="1.57 0 1.57" />
+  <joint name="caster_rear_joint" type="fixed">
+    <origin xyz="${-caster_wheel_offset_x} ${-caster_wheel_offset_y} ${caster_wheel_offset_z}" rpy="1.57 0 1.57" />
     <parent link="base_link" />
-    <child link="caster_right_link" />
+    <child link="caster_rear_link" />
     <axis xyz="0 0 0" />
   </joint>
 
-  <joint name="caster_left_joint" type="fixed">
-    <origin xyz="${-caster_wheel_offset_x} ${caster_wheel_offset_y} ${-caster_wheel_offset_z}" rpy="1.57 0 1.57" />
+  <joint name="caster_front_joint" type="fixed">
+    <origin xyz="${caster_wheel_offset_x} ${caster_wheel_offset_y} ${caster_wheel_offset_z}" rpy="1.57 0 1.57" />
     <parent link="base_link" />
-    <child link="caster_left_link" />
+    <child link="caster_front_link" />
     <axis xyz="0 0 0" />
   </joint>
 
@@ -70,14 +70,14 @@
     <visual name='base_link_visual'>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-chassis-narrow1.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-chassis-center1.stl" />
       </geometry>
       <material name="dark_grey"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-chassis-narrow1.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-chassis-center1.stl" />
       </geometry>
     </collision>
   </link>
@@ -95,7 +95,7 @@
     <visual>
       <origin xyz="-0.0 0.014 0.0" rpy="1.57 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-6inch-wheel.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-6inch-wheel.stl" />
       </geometry>
       <material name="blue"/>
     </visual>
@@ -121,7 +121,7 @@
     <visual>
       <origin xyz="0 -0.014 0" rpy="-1.57 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/narrowbot/collision-6inch-wheel.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-6inch-wheel.stl" />
       </geometry>
       <material name="blue"/>
     </visual>
@@ -133,9 +133,9 @@
     </collision>
   </link>
 
-  <!-- RIGHT CASTER WHEEL LINK -->
+  <!-- REAR CASTER WHEEL LINK -->
 
-  <link name="caster_right_link">
+  <link name="caster_rear_link">
     <inertial>
       <origin xyz=".000112 -0.0155 -.00818" rpy="0 0 0" />
       <mass value="0.027976" />
@@ -146,21 +146,21 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/smallbot_caster_link.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/visual-caster-2inch.stl" />
       </geometry>
       <material name="silver"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <sphere radius="${wheel_radius}"/>
+        <sphere radius="${caster_wheel_radius}"/>
       </geometry>
     </collision>
   </link>
 
-  <!-- LEFT CASTER WHEEL LINK -->  
+  <!-- FRONT CASTER WHEEL LINK -->  
   
-  <link name="caster_left_link">
+  <link name="caster_front_link">
     <inertial>
       <origin xyz=".000112 -0.0155 -.00818" rpy="0 0 0" />
       <mass value="0.027976" />
@@ -171,14 +171,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/smallbot_caster_link.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/visual-caster-2inch.stl" />
       </geometry>
       <material name="silver"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <sphere radius="${wheel_radius}"/>
+        <sphere radius="${caster_wheel_radius}"/>
       </geometry>
     </collision>
   </link>
@@ -205,7 +205,7 @@
   </gazebo>
     
   <!-- Caster Wheels -->
-  <gazebo reference="caster_right_link">
+  <gazebo reference="caster_rear_link">
     <mu1>0.1</mu1>
     <mu2>0.1</mu2>
     <kp>1000000.0</kp>
@@ -214,7 +214,7 @@
     <maxVel>1.0</maxVel>
   </gazebo>
     
-  <gazebo reference="caster_left_link">
+  <gazebo reference="caster_front_link">
     <mu1>0.1</mu1>
     <mu2>0.1</mu2>
     <kp>1000000.0</kp>
