@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="little_arm">
+    
+    <!-- Useful XACRO Variables (Properties) -->
+    <xacro:property name="PI" value="3.14159265359" />
+    <xacro:property name="effort" value="30.0" />
+    <xacro:property name="velocity" value="10.0" />
+
+    <!-- Useful Macros -->
+    <xacro:macro name="default_inertial" params="mass">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="${mass}" />
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                     iyy="0.001" iyz="0.0"
+                     izz="0.001" />
+        </inertial>
+    </xacro:macro>
+
+    <!-- Links 
+    <link name="world"/> -->
+
+    <link name="basement">
+        <xacro:default_inertial mass="0.028"/>
+        <visual>
+            <origin rpy="0 0 0" xyz="-0.05 -0.05 0"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/basement.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="-0.05 -0.05 0"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/basement.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="base_plate">
+        <xacro:default_inertial mass="0.023"/>
+        <visual>
+            <origin rpy="0 0 0" xyz="-0.039 -0.039 -0.056"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/base_plate.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="-0.039 -0.039 -0.056"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/base_plate.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="forward_drive_arm">
+        <xacro:default_inertial mass="0.009"/>
+        <visual>
+            <origin rpy=" 0 -${PI / 2} ${PI / 2}" xyz="0.019 0.006 -0.008"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/forward_drive_arm.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy=" 0 -${PI / 2} ${PI / 2}" xyz="0.019 0.006 -0.008"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/forward_drive_arm.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="horizontal_arm">
+        <xacro:default_inertial mass="0.006"/>
+        <visual>
+            <origin rpy="${PI / 2} 0 ${PI / 2}" xyz="-0.003 -0.04 -0.006"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/horizontal_arm.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="${PI / 2} 0 ${PI / 2}" xyz="-0.003 -0.04 -0.006"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/horizontal_arm.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="claw_support">
+        <xacro:default_inertial mass="0.004"/>
+        <visual>
+            <origin rpy="0 0 ${PI / 2}" xyz="0 -0.005 -0.015"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/claw_support.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 ${PI / 2}" xyz="0 -0.005 -0.015"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/claw_support.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="gripper_right">
+        <xacro:default_inertial mass="0.001"/>
+        <visual>
+            <origin rpy="0 0 -${PI / 2}" xyz="-0.01 0.050 -0.01"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/right_finger.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 -${PI / 2}" xyz="-0.01 0.050 -0.01"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/right_finger.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="gripper_left">
+        <xacro:default_inertial mass="0.001"/>
+        <visual>
+            <origin rpy="0 0 -${PI / 2}" xyz="-0.004 0.050 -0.01"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/left_finger.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 -${PI / 2}" xyz="-0.004 0.050 -0.01"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/left_finger.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="rgb_camera">
+        <xacro:default_inertial mass="0.01"/>
+        <visual>
+        <origin xyz="-0.01 0.040 .035" rpy="-1.57 0 0"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/pi_camera.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+        <origin xyz="-0.01 0.0125 .015" rpy="-1.57 0 -1.57"/>
+            <geometry>
+                <mesh filename="file://$(find zbig_description)/meshes/little_arm/pi_camera.STL" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    
+    <!-- Joints -->  
+    <joint name="virtual_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="basement"/>
+        <origin xyz="-0.015 0.075 0.10" rpy="0 0 -1.57"/>
+    </joint> 
+
+    <joint name ="joint_1" type="revolute">
+        <parent link="basement"/>
+        <child link = "base_plate"/>
+        <origin xyz="0 0 0.0307"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-${PI / 2}" upper="${PI / 2}" 
+               effort="${effort}" velocity="${velocity}"/>
+    </joint>
+
+    <joint name ="joint_2" type="revolute">
+        <parent link="base_plate"/>
+        <child link = "forward_drive_arm"/>
+        <origin xyz="-0.002 0 0.035"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-${PI / 2}" upper="${PI / 2}"
+                effort="${effort}" velocity="${velocity}"/>
+    </joint>
+
+    <joint name ="joint_3" type="revolute">
+        <parent link="forward_drive_arm"/>
+        <child link = "horizontal_arm"/>
+        <origin xyz="0 0 0.08"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-${PI / 2}" upper="${PI / 2}"
+               effort="${effort}" velocity="${velocity}"/>
+    </joint>
+
+    <joint name ="horizontal_arm_to_claw_support" type="fixed">
+        <parent link="horizontal_arm"/>
+        <child link = "claw_support"/>
+        <origin xyz="0 0.082 0"/>
+    </joint>
+
+    <joint name ="joint_4" type="revolute">
+        <parent link="claw_support"/>
+        <child link = "gripper_right"/>
+        <origin xyz="-0.004 0.013 -0.01"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-${PI / 2}" upper="0.0" 
+               effort="${effort}" velocity="${velocity}"/>
+    </joint>
+
+    <joint name ="joint_5" type="revolute">
+        <parent link="claw_support"/>
+        <child link = "gripper_left"/>
+        <origin xyz="-0.022 0.013 -0.01"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="0.0" upper="${PI / 2}" 
+               effort="${effort}" velocity="${velocity}"/>
+        <mimic joint="joint_4" multiplier="-1"/>
+    </joint>
+
+    <joint name ="rgb_camera_joint" type="fixed">
+        <parent link="basement"/>
+        <child link = "rgb_camera"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+</robot>

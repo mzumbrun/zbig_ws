@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<robot name="zsmall" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Load Simulated or Real Hardware Interfaces -->
+   <xacro:arg name="is_sim" default="true"/>
+   <xacro:arg name="use_ros2_control" default="true"/>
+   <xacro:arg name="use_arm" default="false"/>
+
+  <!-- Include physical aspects of the robot, includes add-ons -->
+  <xacro:include filename="$(find zbig_description)/urdf/smallbot_physical.urdf.xacro" />
+  <xacro:include filename="$(find zbig_description)/urdf/materials.xacro" />
+
+  <xacro:if value="$(arg use_arm)">
+      <xacro:include filename="$(find zbig_description)/urdf/little_arm.urdf.xacro" />
+  </xacro:if>
+
+  <!-- Include ros2 control Parameters for both SIM and REAL robots-->
+  <xacro:include filename="$(find zbig_description)/urdf/smallbot_ros2_control.xacro" />
+
+ 
+  <!-- Include gazebo Plugins for SIM only -->
+  <xacro:if value="$(arg use_ros2_control)">
+      <xacro:include filename="$(find zbig_description)/urdf/smallbot_gazebo_control.xacro" />
+  </xacro:if>
+
+  <!-- Include sensors -->
+  <xacro:include filename="$(find zbig_description)/urdf/camera_cbot.xacro" />
+  <xacro:include filename="$(find zbig_description)/urdf/depth_camera_cbot.xacro" />
+
+
+</robot>

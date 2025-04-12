@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="zsmall">
+
+    <ros2_control name="RobotSystem" type="system">
+
+        <!-- ros2_control Gazebo -->
+        <xacro:if value="$(arg is_sim)">
+            <hardware>
+                <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+            </hardware>
+        </xacro:if>
+
+        <!-- ros2_control Real Robot -->
+        <xacro:unless value="$(arg is_sim)">
+            <hardware>
+                <plugin>zbig_firmware/zbigInterface</plugin>
+                    <param name="port">/dev/left_wheel_wifi</param>
+                    <param name="port2">/dev/right_wheel_wifi</param>
+                <plugin>pca9685_hardware_interface/Pca9685SystemHardware</plugin>
+                </hardware>
+        </xacro:unless>
+        
+        <!-- ros2_control Common Interfaces -->
+        <joint name="wheel_right_joint">
+            <command_interface name="velocity">
+              <param name="min">-1</param>
+              <param name="max">1</param>
+            </command_interface>
+            <state_interface name="position" />
+            <state_interface name="velocity" />
+        </joint>
+
+        <joint name="wheel_left_joint">
+            <command_interface name="velocity">
+              <param name="min">-1</param>
+              <param name="max">1</param>
+            </command_interface>
+            <state_interface name="position" />
+            <state_interface name="velocity" />
+        </joint>
+    </ros2_control>
+
+    <!-- include the manipulator arm-->
+    <xacro:if value="$(arg use_arm)">
+
+        <ros2_control name="LeftArm" type="system">
+
+            <!-- ros2_control Common Interfaces -->
+            <joint name="joint_1">
+                <command_interface name="position">
+                    <param name="min">-1.57</param>
+                    <param name="max">1.57</param>
+                </command_interface>
+                <state_interface name="position" />
+            </joint>
+
+            <joint name="joint_2">
+                <command_interface name="position">
+                    <param name="min">-1.57</param>
+                    <param name="max">1.57</param>
+                </command_interface>
+                <state_interface name="position" />
+            </joint>
+
+            <joint name="joint_3">
+                <command_interface name="position">
+                    <param name="min">-1.57</param>
+                    <param name="max">1.57</param>
+                </command_interface>
+                <state_interface name="position" />
+            </joint>
+
+            <joint name="joint_4">
+                <command_interface name="position">
+                    <param name="min">-1.57</param>
+                    <param name="max">0</param>
+                </command_interface>
+                <state_interface name="position" />
+            </joint>  
+
+        </ros2_control>
+
+    </xacro:if>
+
+</robot>
