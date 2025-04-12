@@ -46,8 +46,8 @@
         <gz_frame_id>depth_camera_link</gz_frame_id>
         <camera name="OAK">
           <camera_info_topic>depth_camera_info</camera_info_topic>  
-          <horizontal_fov>1.047198</horizontal_fov>
-          <vertical_fov>0.05</vertical_fov> 
+          <horizontal_fov>1.20428</horizontal_fov>
+          <!-- <vertical_fov>0.05</vertical_fov>  -->
           <image>
             <width>480</width>
             <height>480</height>

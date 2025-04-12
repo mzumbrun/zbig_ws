@@ -221,6 +221,7 @@ local_costmap:
         pointcloud:
           topic: /depth_camera/points
           max_obstacle_height: 2.0
+          min_obstacle_height: 0.05
           clearing: False
           marking: True
           data_type: "PointCloud2"
@@ -228,7 +229,7 @@ local_costmap:
           raytrace_min_range: 0.5
           obstacle_max_range: 2.5
           obstacle_min_range: 0.5
-          enabled: True
+          # enabled: True
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         map_subscribe_transient_local: True
@@ -387,7 +388,7 @@ collision_monitor:
       topic: "depth_camera/points"
       min_height: 0.2
       max_height: 2.0
-      enabled: False
+      enabled: True
 
 docking_server:
   ros__parameters:
