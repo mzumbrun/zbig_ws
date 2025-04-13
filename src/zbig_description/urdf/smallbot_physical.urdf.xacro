@@ -4,7 +4,7 @@
     <xacro:property name="robot_pitch" value="-0.02618"/>
     
     <xacro:property name="wheel_radius" value="0.0335"/>
-    <xacro:property name="wheel_offset_y" value="0.160"/>
+    <xacro:property name="wheel_offset_y" value="0.140"/>
     <xacro:property name="wheel_offset_z" value="0.0"/>
 
     <xacro:property name="caster_wheel_radius" value="0.0335"/>   

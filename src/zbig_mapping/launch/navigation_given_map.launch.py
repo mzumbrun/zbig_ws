@@ -1,7 +1,7 @@
 import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
-from launch.conditions import IfCondition
+from launch.conditions import IfCondition, UnlessCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command
 from launch_ros.actions import Node
@@ -14,6 +14,9 @@ def generate_launch_description():
     
     use_sim_time = LaunchConfiguration("use_sim_time")
     use_sim_time_arg = DeclareLaunchArgument("use_sim_time",default_value="true")
+
+    # use_depth_cam = LaunchConfiguration("use_depth_cam")
+    use_depth_cam_arg = DeclareLaunchArgument("use_depth_cam",default_value="false")
 
     map_name = LaunchConfiguration("map_name")
     map_name_arg = DeclareLaunchArgument("map_name",default_value="floor2")
@@ -46,6 +49,12 @@ def generate_launch_description():
         'navigation_launch.py'
     )
 
+    nav2_nav_no_depth_launch_path = os.path.join(
+        pkg_mapping,
+        'launch',
+        'nav_no_depth_cam.launch.py'
+    )
+
     localization_params_path = os.path.join(
         pkg_localization,
         'config',
@@ -56,6 +65,12 @@ def generate_launch_description():
         pkg_mapping,
         'config',
         'navigation.yaml'
+    )
+
+    nav_no_depth_params_path = os.path.join(
+        pkg_mapping,
+        'config',
+        'nav_no_depth.yaml'
     )
 
     map_file_path = PathJoinSubstitution([
@@ -98,17 +113,29 @@ def generate_launch_description():
         launch_arguments={
                 'use_sim_time': use_sim_time,
                 'params_file': navigation_params_path,
-        }.items()
+        }.items(),
+        condition=IfCondition(LaunchConfiguration('use_depth_cam')),
+    )
+
+    navigation_no_depth_cam_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(nav2_navigation_launch_path),
+        launch_arguments={
+                'use_sim_time': use_sim_time,
+                'params_file': nav_no_depth_params_path,
+        }.items(),
+        condition=UnlessCondition(LaunchConfiguration('use_depth_cam')),
     )
 
     return LaunchDescription([
             rviz_launch_arg,
             use_sim_time_arg,
+            use_depth_cam_arg,
             map_name_arg,
             rviz_config_arg,
             rviz_node,
             #interactive_marker_twist_server_node,
             localization_launch,
             navigation_launch,
+            navigation_no_depth_cam_launch,
 
  ])

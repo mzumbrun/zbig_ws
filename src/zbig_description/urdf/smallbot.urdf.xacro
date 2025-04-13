@@ -26,7 +26,7 @@
 
   <!-- Include sensors -->
   <xacro:include filename="$(find zbig_description)/urdf/camera_cbot.xacro" />
-  <xacro:include filename="$(find zbig_description)/urdf/depth_camera_cbot.xacro" />
+  <!-- <xacro:include filename="$(find zbig_description)/urdf/depth_camera_cbot.xacro" /> -->
 
 
 </robot>
