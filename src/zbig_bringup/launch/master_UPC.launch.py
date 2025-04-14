@@ -97,21 +97,22 @@ def generate_launch_description():
                 parameters=[
                     {'use_sim_time': True}
                 ]
+            ),
+
+            IncludeLaunchDescription(
+                os.path.join(
+                    get_package_share_directory("zbig_controller"),
+                    "launch",
+                    "controller_bigbot.launch.py"
+                ),
+                launch_arguments={
+                    "use_sim_time": use_sim_time,
+                    "use_big": use_big,
+                }.items(),
             )
         ]
     )
-    controller = IncludeLaunchDescription(
-        os.path.join(
-            get_package_share_directory("zbig_controller"),
-            "launch",
-            "controller_bigbot.launch.py"
-        ),
-        launch_arguments={
-            "use_sim_time": use_sim_time,
-            "use_big": use_big,
-        }.items(),
-        condition=IfCondition(use_sim_time)
-    )
+
     
     gz_bridge_params_path = os.path.join(
         pkg_description,
@@ -162,7 +163,7 @@ def generate_launch_description():
         executable="safety_stop.py",
         output="screen",
         parameters=[
-            {"use_sim_time": True,
+            {"use_sim_time": use_sim_time,
              "warning_distance": 0.56,
              "danger_distance": 0.28,
              }],
@@ -214,6 +215,7 @@ def generate_launch_description():
         ),
         launch_arguments={
             "use_sim_time": use_sim_time,
+            "use_depth_cam": use_depth_cam,
         }.items(),
         condition=IfCondition(use_navslam)
     )
@@ -237,7 +239,6 @@ def generate_launch_description():
         use_ekf_arg,
         sim_only_launch,
         world_launch,
-        controller,
         gz_bridge_node,
         world_arg,
         joystick,

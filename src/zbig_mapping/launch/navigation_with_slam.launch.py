@@ -1,7 +1,7 @@
 import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
-from launch.conditions import IfCondition
+from launch.conditions import IfCondition, UnlessCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
@@ -49,6 +49,12 @@ def generate_launch_description():
         'navigation.yaml'
     )
 
+    nav_no_depth_params_path = os.path.join(
+        pkg_mapping,
+        'config',
+        'nav_no_depth.yaml'
+    )
+
     slam_toolbox_params_path = os.path.join(
         pkg_mapping,
         'config',
@@ -94,8 +100,20 @@ def generate_launch_description():
         launch_arguments={
                 'use_sim_time': LaunchConfiguration('use_sim_time'),
                 'params_file': navigation_params_path,
-        }.items()
+        }.items(),
+        condition=IfCondition(LaunchConfiguration('use_depth_cam')),
+
     )
+
+    navigation_no_depth_cam_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(nav2_navigation_launch_path),
+        launch_arguments={
+                'use_sim_time': LaunchConfiguration('use_sim_time'),
+                'params_file': nav_no_depth_params_path,
+        }.items(),
+        condition=UnlessCondition(LaunchConfiguration('use_depth_cam')),
+    )
+
 
     return LaunchDescription([
 
@@ -106,5 +124,6 @@ def generate_launch_description():
    # interactive_marker_twist_server_node,
     slam_toolbox_launch,
     navigation_launch,
+    navigation_no_depth_cam_launch,
 
     ])
