@@ -1,0 +1,7 @@
+wheel_calculator:
+  ros__parameters:
+    wheel_radius: 0.0335
+    wheel_separation: 0.28
+    wheel_radius_error: 0.001
+    wheel_separation_error: 0.001
+

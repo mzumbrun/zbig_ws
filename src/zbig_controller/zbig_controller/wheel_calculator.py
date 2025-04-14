@@ -18,9 +18,16 @@ class WheelCalculator(Node):
         super().__init__("wheel_calculator")
         self.declare_parameter("wheel_radius", 0.074)
         self.declare_parameter("wheel_separation", 0.44)
+        self.declare_parameter("wheel_radius_error", 0.002)
+        self.declare_parameter("wheel_separation_error", 0.004)
 
         self.wheel_radius_ = self.get_parameter("wheel_radius").get_parameter_value().double_value
         self.wheel_separation_ = self.get_parameter("wheel_separation").get_parameter_value().double_value
+        self.wheel_radius_error_ = self.get_parameter("wheel_radius_error").get_parameter_value().double_value
+        self.wheel_separation_error_ = self.get_parameter("wheel_separation_error").get_parameter_value().double_value
+
+        self.wheel_radius_ = self.wheel_radius_ + self.wheel_radius_error_
+        self.wheel_separation_ = self.wheel_separation_ + self.wheel_separation_error_
 
         self.get_logger().info("Using wheel radius %s" % self.wheel_radius_)
         self.get_logger().info("Using wheel separation %s" % self.wheel_separation_)

@@ -49,12 +49,6 @@ def generate_launch_description():
         'navigation_launch.py'
     )
 
-    nav2_nav_no_depth_launch_path = os.path.join(
-        pkg_mapping,
-        'launch',
-        'nav_no_depth_cam.launch.py'
-    )
-
     localization_params_path = os.path.join(
         pkg_localization,
         'config',

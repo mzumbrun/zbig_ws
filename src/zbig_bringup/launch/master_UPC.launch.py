@@ -3,7 +3,7 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, GroupAction
 from launch.conditions import IfCondition, UnlessCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command, PythonExpression
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
@@ -37,6 +37,9 @@ def generate_launch_description():
     
     model = LaunchConfiguration("model")
     model_arg = DeclareLaunchArgument('model', default_value='bigbot.urdf.xacro',)
+
+    use_big = LaunchConfiguration("use_big")
+    use_big_arg = DeclareLaunchArgument('use_big', default_value='true',)
 
     x_arg = DeclareLaunchArgument('x', default_value='-1.',)
     y_arg = DeclareLaunchArgument('y', default_value='0',)
@@ -104,8 +107,8 @@ def generate_launch_description():
             "controller_bigbot.launch.py"
         ),
         launch_arguments={
-            "use_sim_time": "True",
-            # "wheel_separation": "0.445",
+            "use_sim_time": use_sim_time,
+            "use_big": use_big,
         }.items(),
         condition=IfCondition(use_sim_time)
     )
@@ -224,6 +227,7 @@ def generate_launch_description():
         use_navmap_arg,
         map_name_arg,
         model_arg,
+        use_big_arg,
         world_arg,
         x_arg,
         y_arg,
