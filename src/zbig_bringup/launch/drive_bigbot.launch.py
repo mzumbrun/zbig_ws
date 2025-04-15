@@ -55,7 +55,7 @@ def generate_launch_description():
         os.path.join(
             pkg_controller,
             "launch",
-            "controller_bigbot.launch.py"
+            "controller.launch.py"
         ),
         launch_arguments={
             "use_sim_time": "False"

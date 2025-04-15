@@ -103,7 +103,7 @@ def generate_launch_description():
                 os.path.join(
                     get_package_share_directory("zbig_controller"),
                     "launch",
-                    "controller_bigbot.launch.py"
+                    "controller.launch.py"
                 ),
                 launch_arguments={
                     "use_sim_time": use_sim_time,

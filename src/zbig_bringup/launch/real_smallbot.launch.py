@@ -9,9 +9,9 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     
-    pkg_controller = get_package_share_directory('zsmall_controller')
-    pkg_firmware = get_package_share_directory('zsmall_firmware')
-    pkg_localization = get_package_share_directory('zsmall_localization')   
+    pkg_controller = get_package_share_directory('zbig_controller')
+    pkg_firmware = get_package_share_directory('zbig_firmware')
+    pkg_localization = get_package_share_directory('zbig_localization')   
 
     hardware_interface = IncludeLaunchDescription(
         os.path.join(
@@ -30,11 +30,12 @@ def generate_launch_description():
         os.path.join(
             pkg_controller,
             "launch",
-            "controller_smallbot.launch.py"
+            "controller.launch.py"
         ),
         launch_arguments={
             "use_simple_controller": "False",
             "use_sim_time": "False",
+            "use_big": "False",
         }.items(),
     )
     
@@ -50,7 +51,7 @@ def generate_launch_description():
     )
         
     imu_driver_node = Node(
-        package="zsmall_firmware",
+        package="zbig_firmware",
         executable="mpu6050_driver.py"
     )
     
@@ -67,7 +68,7 @@ def generate_launch_description():
     )
 
     safety_stop = Node(
-        package="zsmall_utils",
+        package="zbig_utils",
         executable="safety_stop.py",
         output="screen",
     )
@@ -90,7 +91,7 @@ def generate_launch_description():
    
     moveit = IncludeLaunchDescription(
             os.path.join(
-                get_package_share_directory("zsmall_moveit"),
+                get_package_share_directory("zbig_moveit"),
                 "launch",
                 "moveit.launch.py"
             ),
@@ -99,7 +100,7 @@ def generate_launch_description():
     
     remote_interface = IncludeLaunchDescription(
             os.path.join(
-                get_package_share_directory("zsmall_remote"),
+                get_package_share_directory("zbig_remote"),
                 "launch",
                 "remote_interface.launch.py"
             ),
