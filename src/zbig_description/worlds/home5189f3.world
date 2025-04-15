@@ -76,14 +76,14 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>file:///home/mikez/ztools_ws/my_tools_ws/src/cad/solid_from_mesh_floor1.stl</uri>
+              <uri>file:///home/mikez/ztools_ws/src/cad/solid_from_mesh_floor1.stl</uri>
             </mesh>
           </geometry>
         </visual>
         <collision name='collision'>
           <geometry>
             <mesh>
-              <uri>file:///home/mikez/ztools_ws/my_tools_ws/src/cad/solid_from_mesh_floor1.stl</uri>
+              <uri>file:///home/mikez/ztools_ws/src/cad/solid_from_mesh_floor1.stl</uri>
             </mesh>
           </geometry>
         </collision>

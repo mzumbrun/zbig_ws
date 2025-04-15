@@ -17,3 +17,4 @@ src/zbig_firmware/firmware/bigbot_motors/bigbot_control_PPM_WIFI_v3/bigbot_firmw
 src/zbig_firmware/firmware/bigbot_motors/bigbot_control_ADC_WIFI_v3/bigbot_firmware_parameters.h
 src/zbig_utils/zbig_utils/test_left.py
 src/zbig_utils/zbig_utils/test_right.py
+src/zbig_firmware/firmware/smallbot_motors/smallbot_control_ADC_WIFI_6Mar2025/smallbot_firmware_parameters.h
