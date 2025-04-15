@@ -64,7 +64,7 @@ zbig_controller:
     pose_covariance_diagonal : [0.001, 0.001, 1.0e-3, 1.0e-3, 1.0e-3, 0.01]
     twist_covariance_diagonal: [0.001, 0.001, 1.0e-3, 1.0e-3, 1.0e-3, 0.01]
 
-    wheel_separation : 0.320
+    wheel_separation : 0.32 #0.32
     wheel_radius : 0.0335
 
     wheel_separation_multiplier: 1.0
