@@ -31,11 +31,11 @@ def generate_launch_description():
     )
 
     # Generate path to config file
-    interactive_marker_config_file_path = os.path.join(
-        get_package_share_directory('interactive_marker_twist_server'),
-        'config',
-        'linear.yaml'
-    )
+    # interactive_marker_config_file_path = os.path.join(
+    #     get_package_share_directory('interactive_marker_twist_server'),
+    #     'config',
+    #     'linear.yaml'
+    # )
 
     nav2_navigation_launch_path = os.path.join(
         pkg_mapping,
@@ -72,13 +72,13 @@ def generate_launch_description():
         ]
     )
 
-    interactive_marker_twist_server_node = Node(
-        package='interactive_marker_twist_server',
-        executable='marker_server',
-        name='twist_server_node',
-        parameters=[interactive_marker_config_file_path],
-        output='screen',
-    )
+    # interactive_marker_twist_server_node = Node(
+    #     package='interactive_marker_twist_server',
+    #     executable='marker_server',
+    #     name='twist_server_node',
+    #     parameters=[interactive_marker_config_file_path],
+    #     output='screen',
+    # )
 
     # Path to the Slam Toolbox launch file
     slam_toolbox_launch_path = os.path.join(

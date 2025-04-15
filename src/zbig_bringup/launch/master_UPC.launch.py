@@ -98,6 +98,17 @@ def generate_launch_description():
                     {'use_sim_time': True}
                 ]
             ),
+            
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    os.path.join(pkg_description,
+                    'launch',
+                    'world.launch.py'),
+                ),
+                    launch_arguments={
+                    'world': world,
+                }.items(),
+            ),
 
             IncludeLaunchDescription(
                 os.path.join(
@@ -120,16 +131,6 @@ def generate_launch_description():
         'gz_bridge.yaml'
     )
 
-    world_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(pkg_description,
-            'launch',
-            'world.launch.py'),
-        ),
-            launch_arguments={
-            'world': world,
-        }.items(),
-    )
 
     # Node to bridge /cmd_vel and /odom
     gz_bridge_node = Node(
@@ -238,7 +239,6 @@ def generate_launch_description():
         use_safety_stop_arg,
         use_ekf_arg,
         sim_only_launch,
-        world_launch,
         gz_bridge_node,
         world_arg,
         joystick,
