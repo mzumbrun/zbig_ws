@@ -9,7 +9,7 @@
   <!-- IMU JOINT -->
 
   <joint name="imu_joint" type="fixed">
-    <origin xyz="0.151167 0.0 0.092" rpy="${imu_roll} ${imu_pitch} ${imu_yaw}" />
+    <origin xyz="0.0 0.1715 0.104" rpy="${imu_roll} ${imu_pitch} ${imu_yaw}" />
     <parent link="base_link" />
     <child link="imu_link" />
     <axis xyz="0 0 0" />

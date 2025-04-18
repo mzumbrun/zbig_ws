@@ -20,7 +20,7 @@ def generate_launch_description():
     
     # Process the URDF file
     pkg_path = os.path.join(get_package_share_directory('zbig_description'))
-    xacro_file = os.path.join(pkg_path,'urdf','bigbot.urdf.xacro')
+    xacro_file = os.path.join(pkg_path,'urdf','cbot.urdf.xacro')
     doc = xacro.process_file(xacro_file, mappings={'is_sim' : 'false', 'use_ros2_control' : 'true'})
     robot_description = doc.toprettyxml(indent='  ')
     
@@ -43,7 +43,7 @@ def generate_launch_description():
             os.path.join(
                 get_package_share_directory("zbig_controller"),
                 "config",
-                "bigbot_controllers.yaml",
+                "cbot_controllers.yaml",
             ),
         ],
     )

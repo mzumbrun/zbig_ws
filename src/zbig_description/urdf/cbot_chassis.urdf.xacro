@@ -70,14 +70,14 @@
     <visual name='base_link_visual'>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-chassis-center1.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-chassis-center_short.stl" />
       </geometry>
       <material name="dark_grey"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-chassis-center1.stl" />
+        <mesh filename="file://$(find zbig_description)/meshes/cbot/collision-chassis-center_short.stl" />
       </geometry>
     </collision>
   </link>

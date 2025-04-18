@@ -6,7 +6,7 @@
     <joint name="depth_camera_joint" type="fixed">
         <parent link="base_link"/>
         <child link="depth_camera_link"/>
-        <origin xyz="0.08 0.0 0.050" rpy="0 0 0"/>
+        <origin xyz="0.190338 0.0 0.108" rpy="0 0 0"/>
     </joint>
         <joint name="depth_camera_optical_joint" type="fixed">
         <parent link="depth_camera_link"/>

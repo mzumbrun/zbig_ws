@@ -16,7 +16,7 @@ def generate_launch_description():
     use_big = LaunchConfiguration("use_big")
     use_big_arg = DeclareLaunchArgument("use_big", default_value="True",)
 
-    bigbot_wheel_dims = os.path.join(pkg_description, 'config', 'dims_bigbot.yaml')
+    cbot_wheel_dims = os.path.join(pkg_description, 'config', 'dims_cbot.yaml')
     smallbot_wheel_dims = os.path.join(pkg_description, 'config', 'dims_smallbot.yaml')
   
     joint_state_broadcaster_spawner = Node(
@@ -43,7 +43,7 @@ def generate_launch_description():
             executable="wheel_calculator.py",
             parameters=[ {
                 "use_sim_time": use_sim_time},
-                bigbot_wheel_dims,],
+                cbot_wheel_dims,],
             condition=IfCondition(use_big),
         )
     
