@@ -19,7 +19,7 @@ bt_navigator:
 
 controller_server:
   ros__parameters:
-    controller_frequency: 8.0 # match model_dt   
+    controller_frequency: 20.0 # match model_dt   
     costmap_update_timeout: 0.30
     min_x_velocity_threshold: 0.001
     min_y_velocity_threshold: 0.5
@@ -57,7 +57,7 @@ controller_server:
     # FollowPathMPPI:
       primary_controller: "nav2_mppi_controller::MPPIController"
       time_steps: 56
-      model_dt: 0.125 # time_steps * model_dt = 2.8, seconds of prediction horizon, MATCH CONTROL FREQUENCY
+      model_dt: 0.05 # time_steps * model_dt = 2.8, seconds of prediction horizon, MATCH CONTROL FREQUENCY
       batch_size: 2000
       ax_max: 3.0 # max forward acceleration
       ax_min: -3.0
@@ -151,7 +151,8 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      footprint: "[ [0.15, 0.28], [0.15, -0.28], [-0.35, -0.28], [-0.35, 0.28] ]"
+      # footprint: "[ [0.15, 0.28], [0.15, -0.28], [-0.35, -0.28], [-0.35, 0.28] ]"
+      robot_radius: 0.28
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
@@ -201,7 +202,8 @@ global_costmap:
       publish_frequency: 1.0
       global_frame: map
       robot_base_frame: base_link
-      footprint: "[ [0.1, 0.28], [0.1, -0.28], [-0.35, -0.28], [-0.35, 0.28] ]"
+      # footprint: "[ [0.1, 0.28], [0.1, -0.28], [-0.35, -0.28], [-0.35, 0.28] ]
+      robot_radius: 0.28
       resolution: 0.05
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
@@ -241,7 +243,7 @@ global_costmap:
 
 planner_server:
   ros__parameters:
-    expected_planner_frequency: 8.0
+    expected_planner_frequency: 20.0
     planner_plugins: ["GridBased"]
     costmap_update_timeout: 1.0
     GridBased:
@@ -288,7 +290,7 @@ behavior_server:
 
 waypoint_follower:
   ros__parameters:
-    loop_rate: 8
+    loop_rate: 20
     stop_on_failure: false
     action_server_result_timeout: 900.0
     waypoint_task_executor_plugin: "wait_at_waypoint"
@@ -299,7 +301,7 @@ waypoint_follower:
 
 velocity_smoother:
   ros__parameters:
-    smoothing_frequency: 8.0
+    smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
     max_velocity: [1.5, 0.0, 2.0]
@@ -330,8 +332,8 @@ collision_monitor:
       type: "polygon"
       action_type: "approach"
       footprint_topic: "/local_costmap/published_footprint"
-      time_before_collision: 0.25
-      simulation_time_step: 0.125
+      time_before_collision: 1.2
+      simulation_time_step: 0.05
       min_points: 6
       visualize: True
       enabled: False

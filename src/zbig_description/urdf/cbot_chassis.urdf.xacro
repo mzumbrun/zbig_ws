@@ -2,17 +2,17 @@
 <robot name="zbig" xmlns:xacro="http://ros.org/wiki/xacro">
 
     <xacro:property name="wheel_radius" value="0.074"/>
-    <xacro:property name="wheel_offset_y" value="0.15283"/>
+    <xacro:property name="wheel_offset_y" value="0.147"/>
     <xacro:property name="wheel_offset_z" value="0.0"/>
 
-    <xacro:property name="caster_wheel_radius" value="0.0254"/>   
-    <xacro:property name="caster_wheel_offset_x" value="0.137"/>
+    <xacro:property name="caster_wheel_radius" value="0.0315"/>   
+    <xacro:property name="caster_wheel_offset_x" value="0.168"/>
     <xacro:property name="caster_wheel_offset_y" value="0.0"/>
     <xacro:property name="caster_wheel_offset_z" value="${wheel_offset_z - wheel_radius + caster_wheel_radius}"/>
 
-    <xacro:property name="chassis_mass" value="10.0"/>
-    <xacro:property name="wheel_mass" value="0.05"/>
-    <xacro:property name="caster_wheel_mass" value="0.01"/>
+    <xacro:property name="chassis_mass" value="15.0"/>
+    <xacro:property name="wheel_mass" value="0.08"/>
+    <xacro:property name="caster_wheel_mass" value="0.03"/>
 
   <!-- BASE_FOOTPRINT LINK -->
 

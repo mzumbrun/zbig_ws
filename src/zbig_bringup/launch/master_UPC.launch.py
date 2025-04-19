@@ -36,7 +36,7 @@ def generate_launch_description():
     world_arg = DeclareLaunchArgument(name="world", default_value="empty.world")
     
     model = LaunchConfiguration("model")
-    model_arg = DeclareLaunchArgument('model', default_value='bigbot.urdf.xacro',)
+    model_arg = DeclareLaunchArgument('model', default_value='cbot.urdf.xacro',)
 
     use_big = LaunchConfiguration("use_big")
     use_big_arg = DeclareLaunchArgument('use_big', default_value='true',)

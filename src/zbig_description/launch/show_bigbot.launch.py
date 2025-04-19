@@ -12,7 +12,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
     zbig_description_dir = get_package_share_directory("zbig_description")
 
-    model_arg = DeclareLaunchArgument(name="model", default_value="bigbot.urdf.xacro",)
+    model_arg = DeclareLaunchArgument(name="model", default_value="cbot.urdf.xacro",)
     model_name = PathJoinSubstitution([zbig_description_dir, "urdf", LaunchConfiguration("model")])
 
     robot_description = ParameterValue(Command(["xacro ", model_name]),

@@ -26,6 +26,9 @@ def generate_launch_description():
     
     use_ekf = LaunchConfiguration("use_ekf")
     use_ekf_arg = DeclareLaunchArgument("use_ekf", default_value="false" )
+    
+    use_ros_mpu = LaunchConfiguration("use_ros_mpu")
+    use_ros_mpu_arg = DeclareLaunchArgument("use_ros_mpu", default_value="false" )
 
     hardware_interface = IncludeLaunchDescription(
         os.path.join(
@@ -75,7 +78,8 @@ def generate_launch_description():
         
     imu_driver_node = Node(
         package="zbig_firmware",
-        executable="mpu6050_driver.py"
+        executable="mpu6050_driver.py",
+        condition=UnlessCondition(use_ros_mpu)
     )
     
     mpu6050_sensor = Node(
@@ -84,7 +88,8 @@ def generate_launch_description():
         name='mpu6050_sensor',
         output="screen",
         emulate_tty=True,
-        parameters=[param_file]
+        parameters=[param_file],
+        condition=IfCondition(use_ros_mpu)
     )
     
     ekf_node = Node(
@@ -127,12 +132,13 @@ def generate_launch_description():
         params_arg,
         use_slam_arg,
         use_ekf_arg,
+        use_ros_mpu_arg,
         hardware_interface,
      #   laser_driver,
         controller,
      #   joystick,
         imu_driver_node,
-        # mpu6050_sensor,
+        mpu6050_sensor,
         ekf_node,
      #   safety_stop,
      #   localization,
