@@ -248,7 +248,7 @@ planner_server:
     costmap_update_timeout: 1.0
     GridBased:
       plugin: "nav2_navfn_planner::NavfnPlanner"
-      tolerance: 0.5
+      tolerance: 0.8
       use_astar: false
       allow_unknown: true
 
@@ -336,7 +336,7 @@ collision_monitor:
       simulation_time_step: 0.05
       min_points: 6
       visualize: True
-      enabled: False
+      enabled: True
     observation_sources: ["scan", "pointcloud"]
     scan:
       type: "scan"

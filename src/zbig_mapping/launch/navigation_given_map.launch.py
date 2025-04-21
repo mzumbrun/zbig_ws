@@ -15,7 +15,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration("use_sim_time")
     use_sim_time_arg = DeclareLaunchArgument("use_sim_time",default_value="true")
 
-    # use_depth_cam = LaunchConfiguration("use_depth_cam")
+    use_depth_cam = LaunchConfiguration("use_depth_cam")
     use_depth_cam_arg = DeclareLaunchArgument("use_depth_cam",default_value="false")
 
     map_name = LaunchConfiguration("map_name")
@@ -108,7 +108,7 @@ def generate_launch_description():
                 'use_sim_time': use_sim_time,
                 'params_file': navigation_params_path,
         }.items(),
-        condition=IfCondition(LaunchConfiguration('use_depth_cam')),
+        condition=IfCondition(use_depth_cam),
     )
 
     navigation_no_depth_cam_launch = IncludeLaunchDescription(
@@ -117,7 +117,7 @@ def generate_launch_description():
                 'use_sim_time': use_sim_time,
                 'params_file': nav_no_depth_params_path,
         }.items(),
-        condition=UnlessCondition(LaunchConfiguration('use_depth_cam')),
+        condition=UnlessCondition(use_depth_cam),
     )
 
     return LaunchDescription([
