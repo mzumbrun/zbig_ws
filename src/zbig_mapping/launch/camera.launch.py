@@ -180,27 +180,27 @@ def launch_setup(context, *args, **kwargs):
             output="log",
             arguments=["-d", LaunchConfiguration("rviz_config")],
         ),
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                os.path.join(urdf_launch_dir, "urdf_launch.py")
-            ),
-            launch_arguments={
-                "namespace": namespace,
-                "tf_prefix": name,
-                "camera_model": camera_model,
-                "base_frame": name,
-                "parent_frame": parent_frame,
-                "cam_pos_x": cam_pos_x,
-                "cam_pos_y": cam_pos_y,
-                "cam_pos_z": cam_pos_z,
-                "cam_roll": cam_roll,
-                "cam_pitch": cam_pitch,
-                "cam_yaw": cam_yaw,
-                "use_composition": use_composition,
-                "use_base_descr": publish_tf_from_calibration,
-                "rs_compat": rs_compat,
-            }.items(),
-        ),
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource(
+        #         os.path.join(urdf_launch_dir, "urdf_launch.py")
+        #     ),
+        #     launch_arguments={
+        #         "namespace": namespace,
+        #         "tf_prefix": name,
+        #         "camera_model": camera_model,
+        #         "base_frame": name,
+        #         "parent_frame": parent_frame,
+        #         "cam_pos_x": cam_pos_x,
+        #         "cam_pos_y": cam_pos_y,
+        #         "cam_pos_z": cam_pos_z,
+        #         "cam_roll": cam_roll,
+        #         "cam_pitch": cam_pitch,
+        #         "cam_yaw": cam_yaw,
+        #         "use_composition": use_composition,
+        #         "use_base_descr": publish_tf_from_calibration,
+        #         "rs_compat": rs_compat,
+        #     }.items(),
+        # ),
         ComposableNodeContainer(
             name=f"{name}_container",
             namespace=namespace,
@@ -284,7 +284,7 @@ def generate_launch_description():
     config_prefix = get_package_share_directory("zbig_mapping")
 
     declared_arguments = [
-        DeclareLaunchArgument("name", default_value="oak"),
+        DeclareLaunchArgument("name", default_value="depth_camera"),
         DeclareLaunchArgument("namespace", default_value=""),
         DeclareLaunchArgument("parent_frame", default_value="oak-d-base-frame"),
         DeclareLaunchArgument("camera_model", default_value="OAK-D-LITE"),
@@ -328,7 +328,7 @@ def generate_launch_description():
             description="Enables compatibility with RealSense nodes.",
         ),
         DeclareLaunchArgument("rectify_rgb", default_value="true"),
-        DeclareLaunchArgument("pointcloud.enable", default_value="false"),
+        DeclareLaunchArgument("pointcloud.enable", default_value="true"),
         DeclareLaunchArgument("enable_color", default_value="false"),
         DeclareLaunchArgument("enable_depth", default_value="true"),
         DeclareLaunchArgument("enable_infra1", default_value="false"),
