@@ -35,6 +35,7 @@ def launch_setup(context, *args, **kwargs):
                 "cam_pitch": LaunchConfiguration("cam_pitch"),
                 "cam_yaw": LaunchConfiguration("cam_yaw"),
                 "use_rviz": LaunchConfiguration("use_rviz"),
+                "imu_from_descr": LaunchConfiguration("imu_from_descr"),
             }.items(),
         ),
         LoadComposableNodes(
@@ -60,14 +61,15 @@ def generate_launch_description():
 
     config_prefix = get_package_share_directory("zbig_mapping")
     declared_arguments = [
-        DeclareLaunchArgument("name", default_value="oak"),
-        DeclareLaunchArgument("parent_frame", default_value="oak-d-base-frame"),
-        DeclareLaunchArgument("cam_pos_x", default_value="0.0"),
+        DeclareLaunchArgument("name", default_value="depth_camera"),
+        DeclareLaunchArgument("parent_frame", default_value="base_link"),
+        DeclareLaunchArgument("cam_pos_x", default_value="0.190338"),
         DeclareLaunchArgument("cam_pos_y", default_value="0.0"),
-        DeclareLaunchArgument("cam_pos_z", default_value="0.0"),
+        DeclareLaunchArgument("cam_pos_z", default_value="0.108"),
         DeclareLaunchArgument("cam_roll", default_value="0.0"),
         DeclareLaunchArgument("cam_pitch", default_value="0.0"),
         DeclareLaunchArgument("cam_yaw", default_value="0.0"),
+        DeclareLaunchArgument("imu_from_descr", default_value="false"),
         DeclareLaunchArgument(
             "params_file",
             default_value=os.path.join(config_prefix, "config", "pcl.yaml"),
