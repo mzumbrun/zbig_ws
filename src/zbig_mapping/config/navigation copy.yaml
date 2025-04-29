@@ -50,7 +50,7 @@ controller_server:
       angular_dist_threshold: 0.785
       angular_disengage_threshold: 0.3925
       forward_sampling_distance: 0.5
-      rotate_to_heading_angular_vel: 1.8
+      rotate_to_heading_angular_vel: 3.0
       max_angular_accel: 3.2
       simulate_ahead_time: 1.0
       rotate_to_goal_heading: true
@@ -59,17 +59,17 @@ controller_server:
       time_steps: 56
       model_dt: 0.05 # time_steps * model_dt = 2.8, seconds of prediction horizon, MATCH CONTROL FREQUENCY
       batch_size: 2000
-      ax_max: 10.0 # max forward acceleration
-      ax_min: -10.0
+      ax_max: 3.0 # max forward acceleration
+      ax_min: -3.0
       ay_max: 3.0
-      az_max: 10.0
+      az_max: 3.5
       vx_std: 0.2 # standard deviation of vx
       vy_std: 0.2
       wz_std: 0.4 # angular velocity standard deviation
       vx_max: 0.5 # max forward velocity
-      vx_min: -0.5 # max reverse velocity
+      vx_min: -0.35 # max reverse velocity
       vy_max: 0.5
-      wz_max: 0.8
+      wz_max: 1.9
       iteration_count: 1
       prune_distance: 1.7
       transform_tolerance: 0.1
@@ -151,13 +151,13 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      footprint: "[ [0.22, 0.22], [0.22, -0.22], [-0.22, -0.22], [-0.22, 0.22] ]"
-      # robot_radius: 0.28
+      # footprint: "[ [0.15, 0.28], [0.15, -0.28], [-0.35, -0.28], [-0.35, 0.28] ]"
+      robot_radius: 0.28
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.3
+        inflation_radius: 0.2
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -202,8 +202,8 @@ global_costmap:
       publish_frequency: 1.0
       global_frame: map
       robot_base_frame: base_link
-      footprint: "[ [0.22, 0.22], [0.22, -0.22], [-0.22, -0.22], [-0.22, 0.22] ]"
-      # robot_radius: 0.28
+      # footprint: "[ [0.1, 0.28], [0.1, -0.28], [-0.35, -0.28], [-0.35, 0.28] ]
+      robot_radius: 0.28
       resolution: 0.05
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
@@ -237,7 +237,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.25
+        inflation_radius: 0.4
       always_send_full_costmap: True
 
 
@@ -292,12 +292,12 @@ waypoint_follower:
   ros__parameters:
     loop_rate: 20
     stop_on_failure: false
+    action_server_result_timeout: 900.0
     waypoint_task_executor_plugin: "wait_at_waypoint"
-    service_introspection_mode: "disabled"
     wait_at_waypoint:
       plugin: "nav2_waypoint_follower::WaitAtWaypoint"
       enabled: True
-      waypoint_pause_duration: 0
+      waypoint_pause_duration: 200
 
 velocity_smoother:
   ros__parameters:
@@ -305,7 +305,7 @@ velocity_smoother:
     scale_velocities: False
     feedback: "OPEN_LOOP"
     max_velocity: [1.5, 0.0, 2.0]
-    min_velocity: [-1.5, 0.0, -2.0]
+    min_velocity: [-0.7, 0.0, -2.0]
     max_accel: [2.5, 0.0, 3.2]
     max_decel: [-2.5, 0.0, -3.2]
     odom_topic: "odom"
