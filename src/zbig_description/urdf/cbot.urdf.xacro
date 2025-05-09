@@ -16,7 +16,7 @@
   <!-- Include the sensors -->
   <xacro:include filename="$(find zbig_description)/urdf/lidar_cbot.xacro" />
   <xacro:include filename="$(find zbig_description)/urdf/imu_cbot.xacro" />
-  <xacro:include filename="$(find zbig_description)/urdf/depthai_descr.urdf.xacro" />
+  <!-- <xacro:include filename="$(find zbig_description)/urdf/depthai_descr.urdf.xacro" /> -->
   <!-- <xacro:include filename="$(find zbig_description)/urdf/depth_camera_cbot.xacro" /> -->
   <!-- <xacro:include filename="$(find zbig_description)/urdf/camera_cbot.xacro" /> -->
 

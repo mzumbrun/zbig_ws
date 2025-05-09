@@ -14,8 +14,8 @@
         <xacro:unless value="$(arg is_sim)">
             <hardware>
                 <plugin>zbig_firmware/zbigInterface</plugin>
-                <param name="port">/dev/ttyACM0</param>
-                <param name="port2">/dev/ttyACM1</param>
+                <param name="port">/dev/left_wheel_wifi</param>
+                <param name="port2">/dev/right_wheel_wifi</param>
             </hardware>
         </xacro:unless>
         
