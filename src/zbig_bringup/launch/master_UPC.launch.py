@@ -27,13 +27,13 @@ def generate_launch_description():
     use_navslam_arg = DeclareLaunchArgument("use_navslam", default_value="false")
     
     use_navmap = LaunchConfiguration("use_navmap")
-    use_navmap_arg = DeclareLaunchArgument("use_navmap", default_value="false")
+    use_navmap_arg = DeclareLaunchArgument("use_navmap", default_value="true")
     
     map_name = LaunchConfiguration("map_name")
-    map_name_arg = DeclareLaunchArgument("map_name", default_value="floor2" )
+    map_name_arg = DeclareLaunchArgument("map_name", default_value="provided" )
     
     world = LaunchConfiguration("world") 
-    world_arg = DeclareLaunchArgument(name="world", default_value="empty.world")
+    world_arg = DeclareLaunchArgument(name="world", default_value="home_old.world")
     
     model = LaunchConfiguration("model")
     model_arg = DeclareLaunchArgument('model', default_value='cbot.urdf.xacro',)

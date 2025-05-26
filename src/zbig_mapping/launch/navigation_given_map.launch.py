@@ -45,9 +45,9 @@ def generate_launch_description():
     )
 
     nav2_navigation_launch_path = os.path.join(
-        pkg_navigation,
+        pkg_mapping,
         'launch',
-        'navigation.launch.py'
+        'navigation_launch.py'
     )
 
     localization_params_path = os.path.join(
@@ -107,7 +107,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(nav2_navigation_launch_path),
         launch_arguments={
                 'use_sim_time': use_sim_time,
-                # 'params_file': navigation_params_path,
+                'params_file': navigation_params_path,
         }.items(),
         condition=IfCondition(use_depth_cam),
     )
@@ -116,7 +116,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(nav2_navigation_launch_path),
         launch_arguments={
                 'use_sim_time': use_sim_time,
-                # 'params_file': nav_no_depth_params_path,
+                'params_file': nav_no_depth_params_path,
         }.items(),
         condition=UnlessCondition(use_depth_cam),
     )

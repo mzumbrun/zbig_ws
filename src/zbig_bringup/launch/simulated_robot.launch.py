@@ -8,6 +8,7 @@ from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
+    pkg_description = get_package_share_directory("zbig_description")
     use_slam = LaunchConfiguration("use_slam")
 
     use_slam_arg = DeclareLaunchArgument(
@@ -31,10 +32,32 @@ def generate_launch_description():
         ),
         launch_arguments={
             "use_simple_controller": "False",
-            "use_python": "False"
+            "use_python": "True",
         }.items(),
     )
-    
+
+    gz_bridge_params_path = os.path.join(
+        pkg_description,
+        'config',
+        'gz_bridge.yaml'
+    )
+
+    # Node to bridge /cmd_vel and /odom
+    gz_bridge_node = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            '--ros-args', '-p',
+            f'config_file:={gz_bridge_params_path}'
+        ],
+        output="screen",
+        parameters=[
+            {'use_sim_time': True}
+        ],
+        remappings=[
+            ('/imu', '/imu/out'),
+        ]
+    )
     joystick = IncludeLaunchDescription(
         os.path.join(
             get_package_share_directory("zbig_controller"),
@@ -89,6 +112,7 @@ def generate_launch_description():
         use_slam_arg,
         gazebo,
         controller,
+        gz_bridge_node,
         joystick,
         localization,
         slam,
