@@ -11,6 +11,7 @@ def generate_launch_description():
 
     pkg_mapping = get_package_share_directory('zbig_mapping')
     pkg_localization = get_package_share_directory('zbig_localization')
+    pkg_navigation = get_package_share_directory('zbig_navigation')
     
     use_sim_time = LaunchConfiguration("use_sim_time")
     use_sim_time_arg = DeclareLaunchArgument("use_sim_time",default_value="true")
@@ -44,9 +45,9 @@ def generate_launch_description():
     )
 
     nav2_navigation_launch_path = os.path.join(
-        pkg_mapping,
+        pkg_navigation,
         'launch',
-        'navigation_launch.py'
+        'navigation.launch.py'
     )
 
     localization_params_path = os.path.join(
@@ -106,7 +107,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(nav2_navigation_launch_path),
         launch_arguments={
                 'use_sim_time': use_sim_time,
-                'params_file': navigation_params_path,
+                # 'params_file': navigation_params_path,
         }.items(),
         condition=IfCondition(use_depth_cam),
     )
@@ -115,7 +116,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(nav2_navigation_launch_path),
         launch_arguments={
                 'use_sim_time': use_sim_time,
-                'params_file': nav_no_depth_params_path,
+                # 'params_file': nav_no_depth_params_path,
         }.items(),
         condition=UnlessCondition(use_depth_cam),
     )

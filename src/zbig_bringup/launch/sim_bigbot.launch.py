@@ -33,7 +33,7 @@ def generate_launch_description():
     world_arg = DeclareLaunchArgument(name="world", default_value="empty.world")
     
     model = LaunchConfiguration("model")
-    model_arg = DeclareLaunchArgument('model', default_value='bigbot.urdf.xacro',)
+    model_arg = DeclareLaunchArgument('model', default_value='cbot2.urdf.xacro',)
 
     x_arg = DeclareLaunchArgument('x', default_value='1.0',)
     y_arg = DeclareLaunchArgument('y', default_value='2.5',)

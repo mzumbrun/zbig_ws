@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<robot name="zbig" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Check if Load Simulated or Real Hardware Interfaces -->
+   <xacro:arg name="is_sim" default="true"/>
+
+  <!-- Include Plugins -->
+  <!-- <xacro:include filename="$(find zbig_description)/urdf/cbot_gazebo_control.xacro" /> -->
+  <xacro:include filename="$(find zbig_description)/urdf/cbot2_ros2_control.xacro" />
+  <xacro:include filename="$(find zbig_description)/urdf/cbot2_gazebo.xacro" />
+  <!-- <xacro:include filename="$(find zbig_description)/urdf/lidar_gazebo.xacro" /> -->
+ 
+  <!-- Include physical aspects of the core differential drive robot minus the sensors -->
+  <xacro:include filename="$(find zbig_description)/urdf/cbot2_chassis.urdf.xacro" />
+  <xacro:include filename="$(find zbig_description)/urdf/materials.xacro" />
+
+  <!-- Include the sensor geometry -->
+  <xacro:include filename="$(find zbig_description)/urdf/cbot2_lidar.xacro" />
+  <xacro:include filename="$(find zbig_description)/urdf/cbot2_imu.xacro" />
+  <!-- <xacro:include filename="$(find zbig_description)/urdf/depthai_descr.urdf.xacro" /> -->
+  <!-- <xacro:include filename="$(find zbig_description)/urdf/depth_camera_cbot.xacro" /> -->
+  <!-- <xacro:include filename="$(find zbig_description)/urdf/camera_cbot.xacro" /> -->
+
+
+
+</robot>
