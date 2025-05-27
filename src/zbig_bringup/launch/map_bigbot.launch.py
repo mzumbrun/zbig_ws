@@ -8,6 +8,8 @@ from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
+    pkg_bringup = get_package_share_directory('zbig_bringup')
+        
     use_slam = LaunchConfiguration("use_slam")
 
     use_slam_arg = DeclareLaunchArgument(
@@ -35,16 +37,10 @@ def generate_launch_description():
             executable="rplidar_composition",
            # name="rplidar_composition",
             output="screen",
-            parameters=[{
-                'channel_type': 'serial',
-                'serial_port': '/dev/ttyUSB0',
-                'serial_baudrate': 115200,
-                'frame_id': 'laser_frame',
-                'angle_compensate': True,
-                'inverted': False,
-                'scan_mode': 'Standard'
-            }],         
-
+            parameters=[os.path.join(pkg_bringup,
+                "config",
+                "rplidar_a1.yaml"
+            )],    
     )
     
     controller = IncludeLaunchDescription(
