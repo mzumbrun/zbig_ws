@@ -43,13 +43,13 @@ def generate_launch_description():
 
     laser_driver = Node(
             package="rplidar_ros",
-            executable="rplidar_node",
-            name="rplidar_node",
+            executable="rplidar_composition",
+           # name="rplidar_composition",
+            output="screen",
             parameters=[os.path.join(pkg_bringup,
                 "config",
                 "rplidar_a1.yaml"
-            )],
-            output="screen"
+            )],    
     )
     
     controller = IncludeLaunchDescription(
@@ -115,6 +115,9 @@ def generate_launch_description():
             "launch",
             "global_localization.launch.py"
         ),
+        launch_arguments={
+            "use_sim_time": "False"
+        }.items(),
         condition=UnlessCondition(use_slam)
     )
 
@@ -123,6 +126,9 @@ def generate_launch_description():
             "launch",
             "slam.launch.py"
         ),
+        launch_arguments={
+            "use_sim_time": "False"
+        }.items(),
         condition=IfCondition(use_slam)
     )
 
@@ -131,6 +137,9 @@ def generate_launch_description():
             "launch",
             "navigation.launch.py"
         ),
+        launch_arguments={
+            "use_sim_time": "False"
+        }.items()
     )
     
     return LaunchDescription([
