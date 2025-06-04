@@ -9,12 +9,20 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     pkg_description = get_package_share_directory("zbig_description")
+    
     use_slam = LaunchConfiguration("use_slam")
-
-    use_slam_arg = DeclareLaunchArgument(
-        "use_slam",
-        default_value="false"
-    )
+    use_slam_arg = DeclareLaunchArgument("use_slam",default_value="false"    )
+    
+    map_name = LaunchConfiguration("map_name")
+    map_name_arg = DeclareLaunchArgument("map_name", default_value="provided" )
+    
+    world = LaunchConfiguration("world") 
+    world_arg = DeclareLaunchArgument(name="world", default_value="home.world")
+    
+    x_arg = DeclareLaunchArgument('x', default_value='-2.8',)
+    y_arg = DeclareLaunchArgument('y', default_value='1.5',)
+    z_arg = DeclareLaunchArgument('z', default_value='0.1',)
+    yaw_arg = DeclareLaunchArgument('yaw', default_value='1.57',)
 
     gazebo = IncludeLaunchDescription(
         os.path.join(
@@ -22,6 +30,13 @@ def generate_launch_description():
             "launch",
             "gazebo.launch.py"
         ),
+        launch_arguments={
+        "world": world,
+        "x": LaunchConfiguration('x'), 
+        "y": LaunchConfiguration('y'), 
+        "z": LaunchConfiguration('z'), 
+        "yaw": LaunchConfiguration('yaw'), 
+        }.items()
     )
     
     controller = IncludeLaunchDescription(
@@ -75,6 +90,9 @@ def generate_launch_description():
             "launch",
             "global_localization.launch.py"
         ),
+        launch_arguments={
+            "map_name": map_name,
+        }.items(),
         condition=UnlessCondition(use_slam)
     )
 
@@ -110,6 +128,12 @@ def generate_launch_description():
     
     return LaunchDescription([
         use_slam_arg,
+        map_name_arg,
+        world_arg,
+        x_arg,
+        y_arg,
+        z_arg,
+        yaw_arg,
         gazebo,
         controller,
         gz_bridge_node,

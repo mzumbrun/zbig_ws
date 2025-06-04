@@ -20,6 +20,11 @@ def generate_launch_description():
         'world', default_value='home.world',
         description='Name of the Gazebo world file to load'
     )
+    
+    x_arg = DeclareLaunchArgument('x', default_value='-3.',)
+    y_arg = DeclareLaunchArgument('y', default_value='0',)
+    z_arg = DeclareLaunchArgument('z', default_value='0.1',)
+    yaw_arg = DeclareLaunchArgument('yaw', default_value='3.14',)
 
     # Get package directories
     pkg_description = get_package_share_directory('zbig_description')
@@ -105,7 +110,12 @@ def generate_launch_description():
         executable="create",
         output="screen",
         arguments=["-topic", "robot_description",
-                   "-name", "bigbot"],
+                   "-name", "bigbot",
+                   "-x", LaunchConfiguration('x'), 
+                   "-y", LaunchConfiguration('y'), 
+                   "-z", LaunchConfiguration('z'), 
+                   "-Y", LaunchConfiguration('yaw'), 
+                   ],
         parameters=[
                     {'use_sim_time': True}
                 ]
@@ -127,6 +137,10 @@ def generate_launch_description():
     return LaunchDescription([
         model_arg,
         world_arg,
+        x_arg,
+        y_arg,
+        z_arg,
+        yaw_arg,
         # gazebo_resource_path,
         robot_state_publisher_node,
         gazebo,
